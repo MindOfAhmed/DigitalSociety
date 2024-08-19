@@ -123,6 +123,14 @@ class Notifications(models.Model):
     citizen = models.ForeignKey(Citizens, on_delete=models.CASCADE)
     message = models.TextField()
 
+class Forums(models.Model):
+    title = models.CharField(max_length=30)
+    region = models.CharField(max_length=30)
+    members = models.ManyToManyField(Citizens, related_name='forums')
+
+    def __str__(self):
+        return self.name
+
 class RenewalRequests(models.Model):
     citizen = models.ForeignKey(Citizens, on_delete=models.CASCADE)
     REQUEST_TYPES = [('Passport', 'Passport'), ("Driver's License", "Driver's License")]

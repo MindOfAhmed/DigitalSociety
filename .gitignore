@@ -12,9 +12,12 @@ local_settings.py
 *.swp
 *~
 
-# Python virtual environment
+# Python virtual environment and environment files
 venv/
 .env
+bin/
+lib/
+*.egg-info/
 
 # Django static and media files
 static/
@@ -45,3 +48,12 @@ dist/
 
 # MacOS files
 .DS_Store
+
+# Ignore Python packages
+lib/python*/site-packages/
+
+# Ignore frontend-related files
+../frontend/node_modules/
+../frontend/build/
+../frontend/dist/
+../frontend/package-lock.json

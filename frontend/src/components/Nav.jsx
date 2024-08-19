@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getUserGroups } from "../getUserGroups";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const Nav = ({ isLoggedIn, onLogout, userData }) => {
-  // create state variable that will store the user groups the user is in
+export const Nav = ({ isLoggedIn, onLogout, notifications }) => {
+  // define state variable that will store the user groups the user is in
   const [userGroups, setUserGroups] = useState([]);
+  // define state variable that will control the visibility of the notifications
+  const [showNotifications, setShowNotifications] = useState(false);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -81,17 +85,28 @@ export const Nav = ({ isLoggedIn, onLogout, userData }) => {
                     Logout
                   </button>
                 </li>
-                {/* {userData && userData.citizens && userData.citizens.picture && (
-                  <li className="nav-item">
-                    <img
-                      src={userData.citizens.picture}
-                      alt="profile"
-                      className="rounded-circle mt-2"
-                      height={40}
-                      width={40}
-                    />
-                  </li>
-                )} */}
+                <li className="nav-item mt-2 mx-1">
+                  <FontAwesomeIcon
+                    icon={faBell}
+                    onClick={() => setShowNotifications((s) => !s)}
+                  />
+                  {notifications && notifications.length > 0 && (
+                    <span className="badge mx-1">{notifications.length}</span>
+                  )}
+                  {showNotifications && (
+                    <div className="dropdown-menu show">
+                      {notifications && notifications.length > 0 ? (
+                        notifications.map((notification, index) => (
+                          <p key={index} className="dropdown-item">
+                            {notification.message}
+                          </p>
+                        ))
+                      ) : (
+                        <span className="dropdown-item">No notifications</span>
+                      )}
+                    </div>
+                  )}
+                </li>
               </>
             ) : (
               <li className="nav-item">

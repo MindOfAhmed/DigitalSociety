@@ -122,3 +122,14 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 20%;
   object-fit: cover;
 }
+/* copilot */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+}
+/* copilot */
+.badge {
+  background-color: red;
+}

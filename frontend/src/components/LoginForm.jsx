@@ -41,24 +41,8 @@ export const LoginForm = ({ onLogin }) => {
 
       // clear any previous errors
       setError("");
-
-      // fetch the data for the logged in user using the access token
-      const userData = await axios.get("http://127.0.0.1:8080/api/user/", {
-        // pass the access token in the headers since this is a prtotected endpoint
-        headers: {
-          Authorization: `Bearer ${response.data.access}`,
-        },
-      });
-      // update the states
-      onLogin(userData.data);
-
-      console.log("User data response:", userData.data); // Debug: Log the user data response
-
-      if (!userData || !userData.data) {
-        throw new Error("Failed to fetch user data");
-      }
-      // copilot ^_^
-
+      // update the state
+      onLogin();
       // redirect the user to the home page upon success
       navigate("/");
     } catch (error) {

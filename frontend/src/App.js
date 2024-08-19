@@ -6,12 +6,9 @@ import { useEffect, useState } from "react";
 // axios
 import axios from "axios";
 // react router library
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// font awesome for react
-// import { library } from "@fortawesome/fontawesome-svg-core";
-// import { fas } from "@fortawesome/free-solid-svg-icons";
-// components
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 // import { ProtectedRoute } from "./components/ProtectedRoute";
+// components
 import { Home } from "./components/Home";
 import { Profile } from "./components/Profile";
 import { TownHall } from "./components/TownHall";
@@ -29,13 +26,11 @@ import { AddressRegistrationForm } from "./components/AddressRegistrationForm";
 import { PropertyRegistrationForm } from "./components/PropertyRegistrationForm";
 import { VehicleRegistrationForm } from "./components/VehicleRegistrationForm";
 import { Success } from "./components/Success";
-// add the icons to the library
-// library.add(fas);
 
 function App() {
   // the following states and handlers have been lifted up from the nav component
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // this state will check if the user is logged in or not
-  // const [userData, setUserData] = useState(null); // this state will store the user data after login
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // this piece of state will check if the user is logged in or not
+  const [notifications, setNotifications] = useState(null); // this piece of state will store the notifications after login
 
   useEffect(() => {
     // check if the user is logged in
@@ -44,7 +39,19 @@ function App() {
       // set logged in state
       setIsLoggedIn(!!token);
     }
-  }, []);
+    // make an API call to fetch the notifications
+    (async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8080/api/get_notifications/"
+        );
+        // store the notifications in state
+        setNotifications(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, [isLoggedIn]);
 
   const handleLogout = () => {
     // remove the token from local storage
@@ -70,6 +77,7 @@ function App() {
           <Nav
             isLoggedIn={isLoggedIn}
             onLogout={handleLogout}
+            notifications={notifications}
           />
           {/* Routes is used to group Route components and ensure that only one route is rendered at a time */}
           <Routes>

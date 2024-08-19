@@ -15,6 +15,12 @@ class CitizensSerializer(serializers.ModelSerializer):
         model = Citizens
         fields = '__all__'
 
+'''This serializer will be used to send the notifications for the users'''
+class NotificationsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notifications
+        fields = '__all__'
+
 '''This serializer will be used to validate the citizen's personal information from the form'''
 class CitizenValidationSerializer(serializers.Serializer):
     national_id = serializers.CharField(max_length=30)

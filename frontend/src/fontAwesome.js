@@ -9,6 +9,7 @@ import {
   faCheckCircle,
   faCar,
   faPenToSquare,
+  faBell,
 } from "@fortawesome/free-solid-svg-icons";
 
 // add icons to the library
@@ -20,5 +21,6 @@ library.add(
   faMapMarker,
   faCheckCircle,
   faCar,
-  faPenToSquare
+  faPenToSquare,
+  faBell
 );

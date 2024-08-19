@@ -13,8 +13,6 @@ from .serializers import *
 from .models import *
 from .services import *
 
-# TODO check error handling when creating models
-
 def index(request):
     return render(request, "index.html")
 
@@ -39,20 +37,19 @@ def user_groups(request):
     else:
         return Response({"detail": "Not authenticated"})
 
-'''This function will be used to send the user data to the frontend'''
-# @api_view(['GET']) # only allow GET requests
-# @permission_classes([IsAuthenticated]) # only authenticated users can access this view
-# def get_notifications(request):
-#     # retrieve the user
-#     user = request.user
-#     citizen = user.citizen
-#     try:
-#         # retrieve the user's notifications
-#         notifications = Notifications.objects.filter(citizen=citizen)
-#         # serialize the notifications and send them to the frontend
-#         return Response(NotificationsSerializer(notifications, many=True).data)
-#     except Exception as e:
-#         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+'''This function will be used to send the user's notifications to the frontend'''
+@api_view(['GET']) # only allow GET requests
+@permission_classes([IsAuthenticated]) # only authenticated users can access this view
+def get_notifications(request):
+    # retrieve the citizen
+    citizen = request.user.citizen
+    try:
+        # retrieve the user's notifications
+        notifications = Notifications.objects.filter(citizen=citizen)
+        # serialize the notifications and send them to the frontend
+        return Response(NotificationsSerializer(notifications, many=True).data)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
 '''This api view will retrieve the user's documents and send it to the frontend'''
 class UserDocumentsAPIView(generics.RetrieveAPIView):
