@@ -1,0 +1,2092 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Snapshots Address component renders correctly with given props 1`] = `
+<DocumentFragment>
+  <div
+    class="card my-3 mx-2 shadow"
+  >
+    <div
+      class="row d-flex justify-content-center align-items-center"
+    >
+      <div
+        class="col-md-8 d-flex justify-content-center align-items-center"
+      >
+        <div
+          class="col mx-3"
+        >
+          <strong>
+            City: 
+          </strong>
+          <p>
+            City
+          </p>
+          <strong>
+            Street: 
+          </strong>
+          <p>
+            Street
+          </p>
+          <strong>
+            Building: 
+          </strong>
+          <p>
+            1
+          </p>
+          <strong>
+            Floor: 
+          </strong>
+          <p>
+            2
+          </p>
+          <strong>
+            Apartment: 
+          </strong>
+          <p>
+            3
+          </p>
+        </div>
+        <div
+          class="col"
+        >
+          <strong>
+            National ID:
+          </strong>
+          <p>
+            123456789
+          </p>
+          <strong>
+            Name: 
+          </strong>
+          <p>
+            John
+          </p>
+          <strong>
+            Surname: 
+          </strong>
+          <p>
+            Doe
+          </p>
+          <strong>
+            DOB: 
+          </strong>
+          <p>
+            1980-01-01
+          </p>
+          <strong>
+            Sex: 
+          </strong>
+          <p>
+            M
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots Card component renders correctly with given props 1`] = `
+<DocumentFragment>
+  <div
+    class="col-md-3 mx-5 card shadow"
+  >
+    <div
+      class="mt-2 d-flex justify-content-center align-items-center"
+    >
+      <svg
+        aria-hidden="true"
+        class="svg-inline--fa fa-id-card mx-3 fa-2x"
+        data-icon="id-card"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        viewBox="0 0 576 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 96l576 0c0-35.3-28.7-64-64-64L64 32C28.7 32 0 60.7 0 96zm0 32L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-288L0 128zM64 405.3c0-29.5 23.9-53.3 53.3-53.3l117.3 0c29.5 0 53.3 23.9 53.3 53.3c0 5.9-4.8 10.7-10.7 10.7L74.7 416c-5.9 0-10.7-4.8-10.7-10.7zM176 192a64 64 0 1 1 0 128 64 64 0 1 1 0-128zm176 16c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16z"
+          fill="currentColor"
+        />
+      </svg>
+      <h5
+        class="card-title"
+      >
+        Title
+      </h5>
+    </div>
+    <p
+      class="card-body"
+    >
+      Description
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots DrivingLicense component renders correctly with given props 1`] = `
+<DocumentFragment>
+  <div
+    class="card my-3 mx-2 shadow"
+  >
+    <div
+      class="row col-md-12 d-flex justify-content-center align-items-center"
+    >
+      <div
+        class="col-md-6 d-flex justify-content-center align-items-center"
+      >
+        <img
+          alt="Driving License"
+          class="img-fluid document-picture"
+          src="../assets/passport.jpg"
+        />
+      </div>
+      <div
+        class="col-md-6 d-flex justify-content-center align-items-center"
+      >
+        <div
+          class="col me-3"
+        >
+          <strong>
+            Name Surname:
+          </strong>
+          <p>
+            John Doe
+          </p>
+          <strong>
+            National ID:
+          </strong>
+          <p>
+            123456789
+          </p>
+          <strong>
+            Blood Type:
+          </strong>
+          <p>
+            A+
+          </p>
+          <strong>
+            Nationality:
+          </strong>
+          <p />
+          <strong>
+            Emergency Contact:
+          </strong>
+          <p />
+        </div>
+        <div
+          class="col"
+        >
+          <strong>
+            License Number:
+          </strong>
+          <p>
+            A1234567
+          </p>
+          <strong>
+            License Class:
+          </strong>
+          <p>
+            A
+          </p>
+          <strong>
+            Issued:
+          </strong>
+          <p>
+            2020-01-01
+          </p>
+          <strong>
+            Expires:
+          </strong>
+          <p>
+            2030-01-01
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots Footer component renders correctly 1`] = `
+<DocumentFragment>
+  <footer
+    class=" primary_color text-center text-lg-start mt-5"
+  >
+    <div
+      class="text-center p-3"
+    >
+      © 2024 Copyright: Digital Society
+    </div>
+  </footer>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots Home component renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="row mt-5"
+  >
+    <div
+      class="col-md-6"
+    >
+      <h1>
+        Welcome To The Digital Society!
+      </h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad saepe cumque deleniti maiores iure quibusdam in quis? Quasi, saepe dolorum natus hic odit perferendis optio dolores dolore laudantium magni?
+      </p>
+    </div>
+    <div
+      class="col-md-6 d-flex align-items-center justify-content-center"
+    >
+      <img
+        alt="a group of people communicating"
+        class="shadow-lg"
+        height="200"
+        src="banner.jpg"
+        width="300"
+      />
+    </div>
+  </div>
+  <div
+    class="row mt-5 mb-3"
+  >
+    <div
+      class="col-md-12 d-flex justify-content-center"
+    >
+      <h3>
+        Available Services
+      </h3>
+    </div>
+  </div>
+  <div
+    class="row d-flex justify-content-center"
+  >
+    <div
+      class="col-md-3 mx-5 card shadow"
+    >
+      <div
+        class="mt-2 d-flex justify-content-center align-items-center"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-passport mx-3 fa-2x"
+          data-icon="passport"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 448 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 64C0 28.7 28.7 0 64 0L384 0c35.3 0 64 28.7 64 64l0 384c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64zM183 278.8c-27.9-13.2-48.4-39.4-53.7-70.8l39.1 0c1.6 30.4 7.7 53.8 14.6 70.8zm41.3 9.2l-.3 0-.3 0c-2.4-3.5-5.7-8.9-9.1-16.5c-6-13.6-12.4-34.3-14.2-63.5l47.1 0c-1.8 29.2-8.1 49.9-14.2 63.5c-3.4 7.6-6.7 13-9.1 16.5zm40.7-9.2c6.8-17.1 12.9-40.4 14.6-70.8l39.1 0c-5.3 31.4-25.8 57.6-53.7 70.8zM279.6 176c-1.6-30.4-7.7-53.8-14.6-70.8c27.9 13.2 48.4 39.4 53.7 70.8l-39.1 0zM223.7 96l.3 0 .3 0c2.4 3.5 5.7 8.9 9.1 16.5c6 13.6 12.4 34.3 14.2 63.5l-47.1 0c1.8-29.2 8.1-49.9 14.2-63.5c3.4-7.6 6.7-13 9.1-16.5zM183 105.2c-6.8 17.1-12.9 40.4-14.6 70.8l-39.1 0c5.3-31.4 25.8-57.6 53.7-70.8zM352 192A128 128 0 1 0 96 192a128 128 0 1 0 256 0zM112 384c-8.8 0-16 7.2-16 16s7.2 16 16 16l224 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-224 0z"
+            fill="currentColor"
+          />
+        </svg>
+        <h5
+          class="card-title"
+        >
+          Passport Renewal
+        </h5>
+      </div>
+      <p
+        class="card-body"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad saepe cumque deleniti maiores iure quibusdam in quis?
+      </p>
+    </div>
+    <div
+      class="col-md-3 mx-5 card shadow"
+    >
+      <div
+        class="mt-2 d-flex justify-content-center align-items-center"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-id-card mx-3 fa-2x"
+          data-icon="id-card"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 576 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 96l576 0c0-35.3-28.7-64-64-64L64 32C28.7 32 0 60.7 0 96zm0 32L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-288L0 128zM64 405.3c0-29.5 23.9-53.3 53.3-53.3l117.3 0c29.5 0 53.3 23.9 53.3 53.3c0 5.9-4.8 10.7-10.7 10.7L74.7 416c-5.9 0-10.7-4.8-10.7-10.7zM176 192a64 64 0 1 1 0 128 64 64 0 1 1 0-128zm176 16c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16z"
+            fill="currentColor"
+          />
+        </svg>
+        <h5
+          class="card-title"
+        >
+          Driver's License Renewal
+        </h5>
+      </div>
+      <p
+        class="card-body"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad saepe cumque deleniti maiores iure quibusdam in quis?
+      </p>
+    </div>
+    <div
+      class="col-md-3 mx-5 card shadow"
+    >
+      <div
+        class="mt-2 d-flex justify-content-center align-items-center"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-house-user mx-3 fa-2x"
+          data-icon="house-user"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 576 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c.2 35.5-28.5 64.3-64 64.3l-320.4 0c-35.3 0-64-28.7-64-64l0-160.4-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24zM352 224a64 64 0 1 0 -128 0 64 64 0 1 0 128 0zm-96 96c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16l192 0c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80l-64 0z"
+            fill="currentColor"
+          />
+        </svg>
+        <h5
+          class="card-title"
+        >
+          Property Registration
+        </h5>
+      </div>
+      <p
+        class="card-body"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad saepe cumque deleniti maiores iure quibusdam in quis?
+      </p>
+    </div>
+  </div>
+  <div
+    class="row d-flex justify-content-center mt-4 mb-3"
+  >
+    <div
+      class="col-md-12 d-flex justify-content-center"
+    >
+      <a
+        class="button"
+        href="/services"
+      >
+        Learn More
+      </a>
+    </div>
+  </div>
+  <div
+    class="row d-flex mt-5"
+  >
+    <div
+      class="col-md-4 d-flex justify-content-end image-container"
+    >
+      <img
+        alt="government representatives listening in townhall"
+        class="first-image"
+        src="thGov.jpg"
+      />
+    </div>
+    <div
+      class="col-md-1"
+    >
+      <p
+        class="town_hall_text"
+      >
+        Town Hall
+      </p>
+    </div>
+  </div>
+  <div
+    class="row d-flex"
+  >
+    <div
+      class="col-md-3 mt-5 d-flex align-items-center"
+    >
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit ex sint harum nisi corrupti aut nihil quasi. Ipsa deserunt modi aliquam ex sed atque quidem excepturi, natus hic, enim rerum!
+      </p>
+    </div>
+    <div
+      class="col-md-5 image-container"
+    >
+      <img
+        alt="A townhall"
+        class="second-image"
+        src="th.jpg"
+      />
+    </div>
+  </div>
+  <div
+    class="row d-flex"
+  >
+    <div
+      class="col-md-4 image-container"
+    >
+      <img
+        alt="citizens speaking in townhall"
+        class="third-image"
+        src="thCitizens.jpg"
+      />
+    </div>
+    <div
+      class="col-md-3 d-flex justify-content-center align-items-center"
+    >
+      <a
+        class="text-center button"
+        href="/townhall"
+      >
+        Learn More
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots Nav component renders correctly with given props 1`] = `
+<DocumentFragment>
+  <nav
+    class="navbar navbar-expand-lg primary_color"
+  >
+    <div
+      class="container-fluid"
+    >
+      <a
+        class="navbar-brand complimentary_color"
+        href="/"
+      >
+        Digital Society
+      </a>
+      <button
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        class="navbar-toggler"
+        data-bs-target="#navbarNav"
+        data-bs-toggle="collapse"
+        type="button"
+      >
+        <span
+          class="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+      >
+        <ul
+          class="navbar-nav"
+        >
+          <li
+            class="nav-item"
+          >
+            <a
+              class="nav-link complimentary_color"
+              href="/townhall"
+            >
+              Town Hall
+            </a>
+          </li>
+          <li
+            class="nav-item"
+          >
+            <a
+              class="nav-link complimentary_color"
+              href="/services"
+            >
+              Services
+            </a>
+          </li>
+          <li
+            class="nav-item"
+          >
+            <a
+              class="nav-link complimentary_color"
+              href="/profile"
+            >
+              Profile
+            </a>
+          </li>
+          <li
+            class="nav-item"
+          >
+            <button
+              class="nav-link complimentary_color"
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots Passport component renders correctly with given props 1`] = `
+<DocumentFragment>
+  <div
+    class="card my-3 mx-2 shadow"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="col-md-6 d-flex justify-content-center align-items-center"
+      >
+        <img
+          alt="passport"
+          class="img-fluid document-picture"
+          src="../assets/passport.jpg"
+        />
+      </div>
+      <div
+        class="col-md-6 d-flex justify-content-center align-items-center"
+      >
+        <div
+          class="col me-3"
+        >
+          <strong>
+            Name Surname:
+          </strong>
+          <p>
+            John Doe
+          </p>
+          <strong>
+            National ID:
+          </strong>
+          <p>
+            123456789
+          </p>
+          <strong>
+            DOB:
+          </strong>
+          <p>
+            1980-01-01
+          </p>
+          <strong>
+            Sex:
+          </strong>
+          <p>
+            M
+          </p>
+        </div>
+        <div
+          class="col"
+        >
+          <strong>
+            Passport Number:
+          </strong>
+          <p>
+            A1234567
+          </p>
+          <strong>
+            Issued:
+          </strong>
+          <p>
+            2020-01-01
+          </p>
+          <strong>
+            Expires:
+          </strong>
+          <p>
+            2030-01-01
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots Property component renders correctly with given props 1`] = `
+<DocumentFragment>
+  <div
+    class="card my-3 mx-2 shadow"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="col-md-6 d-flex justify-content-center align-items-center"
+      >
+        <img
+          alt="Property"
+          class="img-fluid document-picture"
+          src="../assets/property.jpg"
+        />
+      </div>
+      <div
+        class="col-md-6 d-flex justify-content-center align-items-center"
+      >
+        <div
+          class="col"
+        >
+          <strong>
+            Property ID: 
+          </strong>
+          <p>
+            A1234567
+          </p>
+          <strong>
+            Type: 
+          </strong>
+          <p>
+            House
+          </p>
+          <strong>
+            Size: 
+          </strong>
+          <p>
+            100
+          </p>
+          <strong>
+            Location: 
+          </strong>
+          <p>
+            City
+          </p>
+        </div>
+        <div
+          class="col me-2"
+        >
+          <strong>
+            National ID:
+          </strong>
+          <p>
+            123456789
+          </p>
+          <strong>
+            Name: 
+          </strong>
+          <p>
+            John
+          </p>
+          <strong>
+            Surname: 
+          </strong>
+          <p>
+            Doe
+          </p>
+          <strong>
+            DOB: 
+          </strong>
+          <p>
+            1980-01-01
+          </p>
+          <strong>
+            Sex: 
+          </strong>
+          <p>
+            M
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row d-flex justify-content-center align-items-center"
+    >
+      <div>
+        <p
+          class="mx-3"
+        >
+          Description
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots RegistrationRequest component renders correctly with given props 1`] = `
+<DocumentFragment>
+  <div
+    class="card my-5 shadow-sm"
+  >
+    <h3
+      class="d-flex col-md-12 justify-content-center align-items-center mb-3"
+    >
+      Property Registration Request
+    </h3>
+    <div
+      class="row d-flex justify-content-center align-items-center"
+    >
+      <div
+        class="col-md-8"
+      />
+    </div>
+    <div
+      class="row my-3 d-flex flex-column justify-content-center align-items-center"
+    >
+      <div
+        class="text-center"
+      >
+        <p>
+          <strong>
+            Proof Document Link:
+          </strong>
+           Proof Document Link
+        </p>
+      </div>
+    </div>
+    <div
+      class="row  d-flex justify-content-center align-items-center mb-3"
+    >
+      <div
+        class="col-md-8 d-flex justify-content-between"
+      >
+        <button
+          class="button"
+        >
+          Reject
+        </button>
+        <button
+          class="button"
+        >
+          Accept
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots RegistrationRequests component renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="card my-5 shadow-sm"
+  >
+    <h3
+      class="d-flex col-md-12 justify-content-center align-items-center mb-3"
+    >
+      Property Registration Request
+    </h3>
+    <div
+      class="row d-flex justify-content-center align-items-center"
+    >
+      <div
+        class="col-md-8"
+      >
+        <div
+          class="card my-3 mx-2 shadow"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-md-6 d-flex justify-content-center align-items-center"
+            >
+              <img
+                alt="Property"
+                class="img-fluid document-picture"
+                src="../assets/property.jpg"
+              />
+            </div>
+            <div
+              class="col-md-6 d-flex justify-content-center align-items-center"
+            >
+              <div
+                class="col"
+              >
+                <strong>
+                  Property ID: 
+                </strong>
+                <p>
+                  A1234567
+                </p>
+                <strong>
+                  Type: 
+                </strong>
+                <p>
+                  House
+                </p>
+                <strong>
+                  Size: 
+                </strong>
+                <p>
+                  100
+                </p>
+                <strong>
+                  Location: 
+                </strong>
+                <p>
+                  City
+                </p>
+              </div>
+              <div
+                class="col me-2"
+              >
+                <strong>
+                  National ID:
+                </strong>
+                <p>
+                  123456789
+                </p>
+                <strong>
+                  Name: 
+                </strong>
+                <p>
+                  John
+                </p>
+                <strong>
+                  Surname: 
+                </strong>
+                <p>
+                  Doe
+                </p>
+                <strong>
+                  DOB: 
+                </strong>
+                <p>
+                  1980-01-01
+                </p>
+                <strong>
+                  Sex: 
+                </strong>
+                <p>
+                  M
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="row d-flex justify-content-center align-items-center"
+          >
+            <div>
+              <p
+                class="mx-3"
+              >
+                Description
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row my-3 d-flex flex-column justify-content-center align-items-center"
+    >
+      <div
+        class="text-center"
+      >
+        <p>
+          <strong>
+            Proof Document Link:
+          </strong>
+           Proof Document Link
+        </p>
+      </div>
+    </div>
+    <div
+      class="row  d-flex justify-content-center align-items-center mb-3"
+    >
+      <div
+        class="col-md-8 d-flex justify-content-between"
+      >
+        <button
+          class="button"
+        >
+          Reject
+        </button>
+        <button
+          class="button"
+        >
+          Accept
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="card my-5 shadow-sm"
+  >
+    <h3
+      class="d-flex col-md-12 justify-content-center align-items-center mb-3"
+    >
+      Vehicle Registration Request
+    </h3>
+    <div
+      class="row d-flex justify-content-center align-items-center"
+    >
+      <div
+        class="col-md-8"
+      >
+        <div
+          class="card my-3 mx-2 shadow"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-md-6 d-flex justify-content-center align-items-center"
+            >
+              <img
+                alt="Vehicle"
+                class="img-fluid document-picture"
+                src="../assets/vehicle.jpg"
+              />
+            </div>
+            <div
+              class="col-md-6 d-flex justify-content-center align-items-center"
+            >
+              <div
+                class="col"
+              >
+                <strong>
+                  Serial Number: 
+                </strong>
+                <p>
+                  987654321
+                </p>
+                <strong>
+                  Plate Number: 
+                </strong>
+                <p>
+                  34-jwt-45
+                </p>
+                <strong>
+                  Model: 
+                </strong>
+                <p>
+                  Model
+                </p>
+                <strong>
+                  Year: 
+                </strong>
+                <p>
+                  2020
+                </p>
+                <strong>
+                  Manufacturer: 
+                </strong>
+                <p>
+                  Manufacturer
+                </p>
+                <strong>
+                  Vehicle Type: 
+                </strong>
+                <p>
+                  Car
+                </p>
+              </div>
+              <div
+                class="col me-2"
+              >
+                <strong>
+                  National ID:
+                </strong>
+                <p>
+                  987654321
+                </p>
+                <strong>
+                  Name: 
+                </strong>
+                <p>
+                  Jane
+                </p>
+                <strong>
+                  Surname: 
+                </strong>
+                <p>
+                  Doe
+                </p>
+                <strong>
+                  DOB: 
+                </strong>
+                <p>
+                  1990-01-01
+                </p>
+                <strong>
+                  Sex: 
+                </strong>
+                <p>
+                  F
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row my-3 d-flex flex-column justify-content-center align-items-center"
+    >
+      <div
+        class="text-center"
+      >
+        <p>
+          <strong>
+            Proof Document Link:
+          </strong>
+           Proof Document Link
+        </p>
+      </div>
+    </div>
+    <div
+      class="row  d-flex justify-content-center align-items-center mb-3"
+    >
+      <div
+        class="col-md-8 d-flex justify-content-between"
+      >
+        <button
+          class="button"
+        >
+          Reject
+        </button>
+        <button
+          class="button"
+        >
+          Accept
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots RenewalRequest component renders correctly with given props 1`] = `
+<DocumentFragment>
+  <div
+    class="card my-5 shadow-sm"
+  >
+    <h3
+      class="d-flex col-md-12 justify-content-center align-items-center mb-3"
+    >
+      Passport Renewal Request
+    </h3>
+    <div
+      class="row"
+    >
+      <div
+        class="col-md-6"
+      >
+        <h4
+          class="d-flex justify-content-center align-items-center"
+        >
+          Old Passport Renewal
+        </h4>
+        <div
+          class="card my-3 mx-2 shadow"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-md-6 d-flex justify-content-center align-items-center"
+            >
+              <img
+                alt="passport"
+                class="img-fluid document-picture"
+                src="../assets/passport.jpg"
+              />
+            </div>
+            <div
+              class="col-md-6 d-flex justify-content-center align-items-center"
+            >
+              <div
+                class="col me-3"
+              >
+                <strong>
+                  Name Surname:
+                </strong>
+                <p>
+                  John Doe
+                </p>
+                <strong>
+                  National ID:
+                </strong>
+                <p>
+                  123456789
+                </p>
+                <strong>
+                  DOB:
+                </strong>
+                <p>
+                  1980-01-01
+                </p>
+                <strong>
+                  Sex:
+                </strong>
+                <p>
+                  M
+                </p>
+              </div>
+              <div
+                class="col"
+              >
+                <strong>
+                  Passport Number:
+                </strong>
+                <p>
+                  A1234567
+                </p>
+                <strong>
+                  Issued:
+                </strong>
+                <p>
+                  2020-01-01
+                </p>
+                <strong>
+                  Expires:
+                </strong>
+                <p>
+                  2030-01-01
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-md-6"
+      >
+        <h4
+          class="d-flex justify-content-center align-items-center"
+        >
+          New Passport Renewal
+        </h4>
+        <div
+          class="card my-3 mx-2 shadow"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-md-6 d-flex justify-content-center align-items-center"
+            >
+              <img
+                alt="passport"
+                class="img-fluid document-picture"
+                src="../assets/passport.jpg"
+              />
+            </div>
+            <div
+              class="col-md-6 d-flex justify-content-center align-items-center"
+            >
+              <div
+                class="col me-3"
+              >
+                <strong>
+                  Name Surname:
+                </strong>
+                <p>
+                  John Doe
+                </p>
+                <strong>
+                  National ID:
+                </strong>
+                <p>
+                  123456789
+                </p>
+                <strong>
+                  DOB:
+                </strong>
+                <p>
+                  1980-01-01
+                </p>
+                <strong>
+                  Sex:
+                </strong>
+                <p>
+                  M
+                </p>
+              </div>
+              <div
+                class="col"
+              >
+                <strong>
+                  Passport Number:
+                </strong>
+                <p>
+                  A1234567
+                </p>
+                <strong>
+                  Issued:
+                </strong>
+                <p>
+                  2024-08-14
+                </p>
+                <strong>
+                  Expires:
+                </strong>
+                <p>
+                  2024-08-14
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row my-3 d-flex flex-column justify-content-center align-items-center"
+    >
+      <div
+        class="text-center"
+      >
+        <p>
+          <strong>
+            Early Renewal Reason:
+          </strong>
+           Reason
+        </p>
+        <p>
+          <strong>
+            Proof Document Link:
+          </strong>
+           Proof Document Link
+        </p>
+      </div>
+    </div>
+    <div
+      class="row  d-flex justify-content-center align-items-center mb-3"
+    >
+      <div
+        class="col-md-8 d-flex justify-content-between"
+      >
+        <button
+          class="button"
+        >
+          Reject
+        </button>
+        <button
+          class="button"
+        >
+          Accept
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots Service component renders correctly with given props 1`] = `
+<DocumentFragment>
+  <div
+    class="row my-5"
+  >
+    <div
+      class="col-md-12 d-flex justify-content-center"
+    >
+      <h1>
+        Title
+      </h1>
+    </div>
+    <div
+      class="col-md-6 d-flex justify-content-center align-items-center"
+    >
+      <img
+        alt="passport"
+        class="shadow-lg"
+        height="275"
+        src="../assets/banner.jpg"
+        width="500"
+      />
+    </div>
+    <div
+      class="col-md-6 d-flex flex-column align-items-center justify-content-center"
+    >
+      <div
+        class="w-100"
+      >
+        <div
+          class="row justify-content-center align-items-center mt-3"
+        >
+          <div
+            class="card shadow d-flex col-md-10 flex-column justify-content-center align-items-center my-3 py-3"
+          >
+            <h3>
+              Step: 1
+            </h3>
+            <div
+              class="d-flex flex-column my-3"
+            >
+              <svg
+                aria-hidden="true"
+                class="svg-inline--fa fa-id-card fa-2x "
+                data-icon="id-card"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                viewBox="0 0 576 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 96l576 0c0-35.3-28.7-64-64-64L64 32C28.7 32 0 60.7 0 96zm0 32L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-288L0 128zM64 405.3c0-29.5 23.9-53.3 53.3-53.3l117.3 0c29.5 0 53.3 23.9 53.3 53.3c0 5.9-4.8 10.7-10.7 10.7L74.7 416c-5.9 0-10.7-4.8-10.7-10.7zM176 192a64 64 0 1 1 0 128 64 64 0 1 1 0-128zm176 16c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16z"
+                  fill="currentColor"
+                />
+              </svg>
+              <p
+                class="mt-2"
+              >
+                 Step 1 
+              </p>
+            </div>
+            <div
+              class="d-flex flex-row col-md-8 justify-content-between mb-3"
+            >
+              <div
+                class="active-step"
+              >
+                1
+              </div>
+              <div
+                class="inactive-step"
+              >
+                2
+              </div>
+            </div>
+            <div
+              class="col-md-12 d-flex justify-content-between"
+            >
+              <button
+                class="invisible"
+              >
+                Prev
+              </button>
+              <button
+                class="button"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-md-12 d-flex justify-content-center mt-2"
+    >
+      <a
+        class="button"
+        href="/services/passport_citizen"
+      >
+        Start!
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots Services component renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="row my-5"
+  >
+    <div
+      class="col-md-12 d-flex justify-content-center"
+    >
+      <h1>
+        Passport Renewal
+      </h1>
+    </div>
+    <div
+      class="col-md-6 d-flex justify-content-center align-items-center"
+    >
+      <img
+        alt="passport"
+        class="shadow-lg"
+        height="275"
+        src="passport.jpg"
+        width="500"
+      />
+    </div>
+    <div
+      class="col-md-6 d-flex flex-column align-items-center justify-content-center"
+    >
+      <div
+        class="w-100"
+      >
+        <div
+          class="row justify-content-center align-items-center mt-3"
+        >
+          <div
+            class="card shadow d-flex col-md-10 flex-column justify-content-center align-items-center my-3 py-3"
+          >
+            <h3>
+              Step: 1
+            </h3>
+            <div
+              class="d-flex flex-column my-3"
+            >
+              <svg
+                aria-hidden="true"
+                class="svg-inline--fa fa-user fa-2x "
+                data-icon="user"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"
+                  fill="currentColor"
+                />
+              </svg>
+              <p
+                class="mt-2"
+              >
+                 Fill in your personal details 
+              </p>
+            </div>
+            <div
+              class="d-flex flex-row col-md-8 justify-content-between mb-3"
+            >
+              <div
+                class="active-step"
+              >
+                1
+              </div>
+              <div
+                class="inactive-step"
+              >
+                2
+              </div>
+              <div
+                class="inactive-step"
+              >
+                3
+              </div>
+              <div
+                class="inactive-step"
+              >
+                4
+              </div>
+            </div>
+            <div
+              class="col-md-12 d-flex justify-content-between"
+            >
+              <button
+                class="invisible"
+              >
+                Prev
+              </button>
+              <button
+                class="button"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-md-12 d-flex justify-content-center mt-2"
+    >
+      <a
+        class="button"
+        href="/services/passport_citizen"
+      >
+        Start!
+      </a>
+    </div>
+  </div>
+  <div
+    class="row my-5"
+  >
+    <div
+      class="col-md-12 d-flex justify-content-center"
+    >
+      <h1>
+        Address Registration
+      </h1>
+    </div>
+    <div
+      class="col-md-6 d-flex justify-content-center align-items-center"
+    >
+      <img
+        alt="passport"
+        class="shadow-lg"
+        height="275"
+        src="address.jpg"
+        width="500"
+      />
+    </div>
+    <div
+      class="col-md-6 d-flex flex-column align-items-center justify-content-center"
+    >
+      <div
+        class="w-100"
+      >
+        <div
+          class="row justify-content-center align-items-center mt-3"
+        >
+          <div
+            class="card shadow d-flex col-md-10 flex-column justify-content-center align-items-center my-3 py-3"
+          >
+            <h3>
+              Step: 1
+            </h3>
+            <div
+              class="d-flex flex-column my-3"
+            >
+              <svg
+                aria-hidden="true"
+                class="svg-inline--fa fa-user fa-2x "
+                data-icon="user"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"
+                  fill="currentColor"
+                />
+              </svg>
+              <p
+                class="mt-2"
+              >
+                 Fill in your personal details 
+              </p>
+            </div>
+            <div
+              class="d-flex flex-row col-md-8 justify-content-between mb-3"
+            >
+              <div
+                class="active-step"
+              >
+                1
+              </div>
+              <div
+                class="inactive-step"
+              >
+                2
+              </div>
+              <div
+                class="inactive-step"
+              >
+                3
+              </div>
+            </div>
+            <div
+              class="col-md-12 d-flex justify-content-between"
+            >
+              <button
+                class="invisible"
+              >
+                Prev
+              </button>
+              <button
+                class="button"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-md-12 d-flex justify-content-center mt-2"
+    >
+      <a
+        class="button"
+        href="/services/address_citizen"
+      >
+        Start!
+      </a>
+    </div>
+  </div>
+  <div
+    class="row my-5"
+  >
+    <div
+      class="col-md-12 d-flex justify-content-center"
+    >
+      <h1>
+        Vehicle Registration
+      </h1>
+    </div>
+    <div
+      class="col-md-6 d-flex justify-content-center align-items-center"
+    >
+      <img
+        alt="passport"
+        class="shadow-lg"
+        height="275"
+        src="vehicle.jpg"
+        width="500"
+      />
+    </div>
+    <div
+      class="col-md-6 d-flex flex-column align-items-center justify-content-center"
+    >
+      <div
+        class="w-100"
+      >
+        <div
+          class="row justify-content-center align-items-center mt-3"
+        >
+          <div
+            class="card shadow d-flex col-md-10 flex-column justify-content-center align-items-center my-3 py-3"
+          >
+            <h3>
+              Step: 1
+            </h3>
+            <div
+              class="d-flex flex-column my-3"
+            >
+              <svg
+                aria-hidden="true"
+                class="svg-inline--fa fa-user fa-2x "
+                data-icon="user"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"
+                  fill="currentColor"
+                />
+              </svg>
+              <p
+                class="mt-2"
+              >
+                 Fill in your personal details 
+              </p>
+            </div>
+            <div
+              class="d-flex flex-row col-md-8 justify-content-between mb-3"
+            >
+              <div
+                class="active-step"
+              >
+                1
+              </div>
+              <div
+                class="inactive-step"
+              >
+                2
+              </div>
+              <div
+                class="inactive-step"
+              >
+                3
+              </div>
+            </div>
+            <div
+              class="col-md-12 d-flex justify-content-between"
+            >
+              <button
+                class="invisible"
+              >
+                Prev
+              </button>
+              <button
+                class="button"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-md-12 d-flex justify-content-center mt-2"
+    >
+      <a
+        class="button"
+        href="/services/vehicle_citizen"
+      >
+        Start!
+      </a>
+    </div>
+  </div>
+  <div
+    class="row my-5"
+  >
+    <div
+      class="col-md-12 d-flex justify-content-center"
+    >
+      <h1>
+        Driver's License Renewal
+      </h1>
+    </div>
+    <div
+      class="col-md-6 d-flex justify-content-center align-items-center"
+    >
+      <img
+        alt="passport"
+        class="shadow-lg"
+        height="275"
+        src="driver.jpg"
+        width="500"
+      />
+    </div>
+    <div
+      class="col-md-6 d-flex flex-column align-items-center justify-content-center"
+    >
+      <div
+        class="w-100"
+      >
+        <div
+          class="row justify-content-center align-items-center mt-3"
+        >
+          <div
+            class="card shadow d-flex col-md-10 flex-column justify-content-center align-items-center my-3 py-3"
+          >
+            <h3>
+              Step: 1
+            </h3>
+            <div
+              class="d-flex flex-column my-3"
+            >
+              <svg
+                aria-hidden="true"
+                class="svg-inline--fa fa-user fa-2x "
+                data-icon="user"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"
+                  fill="currentColor"
+                />
+              </svg>
+              <p
+                class="mt-2"
+              >
+                 Fill in your personal details 
+              </p>
+            </div>
+            <div
+              class="d-flex flex-row col-md-8 justify-content-between mb-3"
+            >
+              <div
+                class="active-step"
+              >
+                1
+              </div>
+              <div
+                class="inactive-step"
+              >
+                2
+              </div>
+              <div
+                class="inactive-step"
+              >
+                3
+              </div>
+              <div
+                class="inactive-step"
+              >
+                4
+              </div>
+            </div>
+            <div
+              class="col-md-12 d-flex justify-content-between"
+            >
+              <button
+                class="invisible"
+              >
+                Prev
+              </button>
+              <button
+                class="button"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-md-12 d-flex justify-content-center mt-2"
+    >
+      <a
+        class="button"
+        href="/services/DriversLicense_citizen"
+      >
+        Start!
+      </a>
+    </div>
+  </div>
+  <div
+    class="row my-5"
+  >
+    <div
+      class="col-md-12 d-flex justify-content-center"
+    >
+      <h1>
+        Property Registration
+      </h1>
+    </div>
+    <div
+      class="col-md-6 d-flex justify-content-center align-items-center"
+    >
+      <img
+        alt="passport"
+        class="shadow-lg"
+        height="275"
+        src="property.jpg"
+        width="500"
+      />
+    </div>
+    <div
+      class="col-md-6 d-flex flex-column align-items-center justify-content-center"
+    >
+      <div
+        class="w-100"
+      >
+        <div
+          class="row justify-content-center align-items-center mt-3"
+        >
+          <div
+            class="card shadow d-flex col-md-10 flex-column justify-content-center align-items-center my-3 py-3"
+          >
+            <h3>
+              Step: 1
+            </h3>
+            <div
+              class="d-flex flex-column my-3"
+            >
+              <svg
+                aria-hidden="true"
+                class="svg-inline--fa fa-user fa-2x "
+                data-icon="user"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                viewBox="0 0 448 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"
+                  fill="currentColor"
+                />
+              </svg>
+              <p
+                class="mt-2"
+              >
+                 Fill in your personal details 
+              </p>
+            </div>
+            <div
+              class="d-flex flex-row col-md-8 justify-content-between mb-3"
+            >
+              <div
+                class="active-step"
+              >
+                1
+              </div>
+              <div
+                class="inactive-step"
+              >
+                2
+              </div>
+              <div
+                class="inactive-step"
+              >
+                3
+              </div>
+            </div>
+            <div
+              class="col-md-12 d-flex justify-content-between"
+            >
+              <button
+                class="invisible"
+              >
+                Prev
+              </button>
+              <button
+                class="button"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-md-12 d-flex justify-content-center mt-2"
+    >
+      <a
+        class="button"
+        href="/services/property_citizen"
+      >
+        Start!
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots Steps component renders correctly with given props 1`] = `
+<DocumentFragment>
+  <div
+    class="row justify-content-center align-items-center mt-3"
+  >
+    <div
+      class="card shadow d-flex col-md-10 flex-column justify-content-center align-items-center my-3 py-3"
+    >
+      <h3>
+        Step: 1
+      </h3>
+      <div
+        class="d-flex flex-column my-3"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-id-card fa-2x "
+          data-icon="id-card"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 576 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 96l576 0c0-35.3-28.7-64-64-64L64 32C28.7 32 0 60.7 0 96zm0 32L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-288L0 128zM64 405.3c0-29.5 23.9-53.3 53.3-53.3l117.3 0c29.5 0 53.3 23.9 53.3 53.3c0 5.9-4.8 10.7-10.7 10.7L74.7 416c-5.9 0-10.7-4.8-10.7-10.7zM176 192a64 64 0 1 1 0 128 64 64 0 1 1 0-128zm176 16c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16z"
+            fill="currentColor"
+          />
+        </svg>
+        <p
+          class="mt-2"
+        >
+           Step 1 
+        </p>
+      </div>
+      <div
+        class="d-flex flex-row col-md-8 justify-content-between mb-3"
+      >
+        <div
+          class="active-step"
+        >
+          1
+        </div>
+        <div
+          class="inactive-step"
+        >
+          2
+        </div>
+      </div>
+      <div
+        class="col-md-12 d-flex justify-content-between"
+      >
+        <button
+          class="invisible"
+        >
+          Prev
+        </button>
+        <button
+          class="button"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Component Snapshots Vehicle component renders correctly with given props 1`] = `
+<DocumentFragment>
+  <div
+    class="card my-3 mx-2 shadow"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="col-md-6 d-flex justify-content-center align-items-center"
+      >
+        <img
+          alt="Vehicle"
+          class="img-fluid document-picture"
+          src="../assets/vehicle.jpg"
+        />
+      </div>
+      <div
+        class="col-md-6 d-flex justify-content-center align-items-center"
+      >
+        <div
+          class="col"
+        >
+          <strong>
+            Serial Number: 
+          </strong>
+          <p>
+            123456789
+          </p>
+          <strong>
+            Plate Number: 
+          </strong>
+          <p>
+            34-jwt-45
+          </p>
+          <strong>
+            Model: 
+          </strong>
+          <p>
+            Model
+          </p>
+          <strong>
+            Year: 
+          </strong>
+          <p>
+            2020
+          </p>
+          <strong>
+            Manufacturer: 
+          </strong>
+          <p>
+            Manufacturer
+          </p>
+          <strong>
+            Vehicle Type: 
+          </strong>
+          <p>
+            Car
+          </p>
+        </div>
+        <div
+          class="col me-2"
+        >
+          <strong>
+            National ID:
+          </strong>
+          <p>
+            123456789
+          </p>
+          <strong>
+            Name: 
+          </strong>
+          <p>
+            John
+          </p>
+          <strong>
+            Surname: 
+          </strong>
+          <p>
+            Doe
+          </p>
+          <strong>
+            DOB: 
+          </strong>
+          <p>
+            1980-01-01
+          </p>
+          <strong>
+            Sex: 
+          </strong>
+          <p>
+            M
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,124 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Open Sans", sans-serif;
+}
+/* body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+  
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Lora', serif;
+} */
+
+.primary_color {
+  background-color: #1d5379 !important;
+  color: #f5f5f5 !important;
+}
+.secondary_color {
+  /* background-color: #eee !important; */
+  color: #eab56f;
+}
+
+.complimentary_color {
+  color: #f5f5f5;
+  transition: color 0.5s;
+}
+
+.navbar .complimentary_color {
+  color: #f5f5f5 !important;
+}
+
+.complimentary_color:hover,
+.complimentary_color:focus {
+  color: #f0c893 !important;
+}
+
+.button {
+  border-radius: 7px;
+  background-color: #1d5379;
+  color: #f5f5f5;
+  text-decoration: none;
+  padding: 6px 10px;
+  transition: 0.5s;
+}
+
+.button:hover,
+.button:focus {
+  color: #f0c893;
+}
+
+.town_hall_text {
+  font-size: 70px;
+  text-align: center;
+}
+
+/* copilot gave me the following 4 */
+.image-container {
+  position: relative;
+  height: 250px;
+}
+
+.first-image,
+.second-image,
+.third-image {
+  position: absolute;
+  max-width: 100%; /* avoids overlaping */
+}
+
+.first-image {
+  right: -10px;
+  z-index: 1;
+}
+
+.second-image {
+  left: -10px;
+  z-index: 2;
+}
+
+.third-image {
+  right: -5px;
+  z-index: 1;
+}
+
+.active-step {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f0c893;
+  background-color: #1d5379;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+.inactive-step {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  background-color: rgb(206, 202, 202);
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+.document-picture {
+  max-width: 50%;
+  max-height: 80%;
+}
+.active_tab {
+  background-color: #1d5379 !important;
+  color: #f5f5f5 !important;
+}
+.profile_picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 20%;
+  object-fit: cover;
+}
