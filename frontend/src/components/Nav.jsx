@@ -1,28 +1,11 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getUserGroups } from "../getUserGroups";
+import { useState } from "react";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const Nav = ({ isLoggedIn, onLogout, notifications }) => {
-  // define state variable that will store the user groups the user is in
-  const [userGroups, setUserGroups] = useState([]);
+export const Nav = ({ isLoggedIn, onLogout, notifications, userGroups }) => {
   // define state variable that will control the visibility of the notifications
   const [showNotifications, setShowNotifications] = useState(false);
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      return;
-    }
-    // fetch the user groups from the backend
-    const fetchGroups = async () => {
-      const groups = await getUserGroups();
-      // store the groups in state
-      setUserGroups(groups);
-    };
-    fetchGroups();
-  }, [isLoggedIn]); // copilot ^_^
-
   // this function will check if the user is in a specific group
   const isInGroup = (group) => userGroups.includes(group);
 

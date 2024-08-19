@@ -17,14 +17,20 @@ const refreshToken = async () => {
           refresh: refresh_token,
         }
       );
-      // store the new access token in local storage
-      localStorage.setItem("access_token", response.data.access);
-      // reset the flag on successful refresh
-      localStorage.removeItem("refresh_attempt_failed");
+      if (response && response.data) {
+        // store the new access token in local storage
+        localStorage.setItem("access_token", response.data.access);
+        // remove the refresh attempt failed flag
+        localStorage.removeItem("refresh_attempt_failed");
+      } else {
+        throw new Error("Invalid server response");
+      }
     } catch (error) {
-      // set a flag indicating the refresh attempt failed
+      // set the refresh attempt failed flag
       localStorage.setItem("refresh_attempt_failed", "true");
-      throw new Error("Invalid refresh token");
+      console.error("Refresh token failed", error);
+      // throw the error to be caught by the calling code
+      throw error;
     }
   } else {
     throw new Error("Refresh token not available or refresh already attempted");
@@ -54,6 +60,7 @@ const setupAxiosInterceptors = () => {
         } catch (e) {
           // redirect the user to the login page if the refresh attempt fails
           window.location.href = `/login?sessionExpired=true`;
+          console.error("Refresh token failed", e);
           return Promise.reject(e);
         }
       }
@@ -80,3 +87,4 @@ const setupAxiosInterceptors = () => {
 setupAxiosInterceptors();
 
 export default setupAxiosInterceptors;
+// copilot ^_^

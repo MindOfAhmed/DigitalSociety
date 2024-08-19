@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // axios
 import axios from "axios";
 // react router library
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import { ProtectedRoute } from "./components/ProtectedRoute";
 // components
 import { Home } from "./components/Home";
@@ -26,11 +26,13 @@ import { AddressRegistrationForm } from "./components/AddressRegistrationForm";
 import { PropertyRegistrationForm } from "./components/PropertyRegistrationForm";
 import { VehicleRegistrationForm } from "./components/VehicleRegistrationForm";
 import { Success } from "./components/Success";
+import { getUserGroups } from "./getUserGroups";
 
 function App() {
   // the following states and handlers have been lifted up from the nav component
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // this piece of state will check if the user is logged in or not
-  const [notifications, setNotifications] = useState(null); // this piece of state will store the notifications after login
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // this will check if the user is logged in or not
+  const [notifications, setNotifications] = useState(null); // this will store the notifications after login
+  const [userGroups, setUserGroups] = useState([]); // this will store the user groups the user is in after login
 
   useEffect(() => {
     // check if the user is logged in
@@ -38,25 +40,32 @@ function App() {
     if (token) {
       // set logged in state
       setIsLoggedIn(!!token);
+      // make an API call to fetch the notifications
+      (async () => {
+        try {
+          const response = await axios.get(
+            "http://127.0.0.1:8080/api/get_notifications/"
+          );
+          // store the notifications in state
+          setNotifications(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      })();
+      // fetch the user's user groups from the backend
+      (async () => {
+        const groups = await getUserGroups();
+        // store the groups in state
+        setUserGroups(groups);
+      })();
     }
-    // make an API call to fetch the notifications
-    (async () => {
-      try {
-        const response = await axios.get(
-          "http://127.0.0.1:8080/api/get_notifications/"
-        );
-        // store the notifications in state
-        setNotifications(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
   }, [isLoggedIn]);
 
   const handleLogout = () => {
     // remove the token from local storage
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
+    localStorage.removeItem("refresh_attempt_failed");
 
     // update the logged in state
     setIsLoggedIn(false);
@@ -78,6 +87,7 @@ function App() {
             isLoggedIn={isLoggedIn}
             onLogout={handleLogout}
             notifications={notifications}
+            userGroups={userGroups}
           />
           {/* Routes is used to group Route components and ensure that only one route is rendered at a time */}
           <Routes>
@@ -96,7 +106,7 @@ function App() {
               path="/townhall"
               element={
                 // <ProtectedRoute>
-                <TownHall />
+                <TownHall userGroups={userGroups} />
                 // </ProtectedRoute>
               }
             />

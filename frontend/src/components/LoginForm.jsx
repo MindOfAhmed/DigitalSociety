@@ -13,10 +13,21 @@ export const LoginForm = ({ onLogin }) => {
 
   // if the session has expired, notify the user
   useEffect(() => {
+    // check if the sessionExpired query parameter is present in the URL
     const urlParams = new URLSearchParams(window.location.search);
     const sessionExpired = urlParams.get("sessionExpired");
+    // if the session has expired, notify the user
     if (sessionExpired) {
       alert("Your session has expired. Please log in again.");
+      // remove the sessionExpired query parameter from the URL to prevent a loop
+      urlParams.delete("sessionExpired");
+      window.history.replaceState(
+        null,
+        "",
+        `${window.location.pathname}${
+          urlParams.toString() ? "?" + urlParams.toString() : ""
+        }`
+      );
     }
   }, []);
   //copilot ^_^
