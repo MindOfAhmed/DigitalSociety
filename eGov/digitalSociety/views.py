@@ -642,7 +642,7 @@ def create_forum(request):
     title = request.data.get('title')
     region = request.data.get('region')
     # create a forum instance
-    forum = Forums.objects.create(title=title, region=region, author=request.user.citizen)
+    forum = Forums.objects.create(title=title, region=region)
     # add members based on the region
     if region == 'nation':
         members = Citizens.objects.all()
@@ -684,3 +684,18 @@ def get_forum(request, id):
         return Response(ForumsSerializer(forum).data)
     except Forums.DoesNotExist:
         return Response({"message": "The forum does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+
+'''This function will be used to create a new post'''
+@api_view(['POST'])
+@permission_classes([IsAuthenticated]) # only authenticated users can access this view
+def create_post(request):
+    # retrieve the request data
+    title = request.data.get('title')
+    content = request.data.get('content')
+    forum_id = request.data.get('forum_id')
+    # retrive the forum and citizen
+    citizen = request.user.citizen 
+    forum = Forums.objects.get(id=forum_id)
+    # create a new post instance
+    Posts.objects.create(title=title, content=content, author=citizen, forum=forum)
+    return Response({"message": "The post has been created successfully."}, status=status.HTTP_200_OK)

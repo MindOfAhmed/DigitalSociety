@@ -31,6 +31,12 @@ class RegistrationRequestsAdmin(admin.ModelAdmin):
 class ForumsAdmin(admin.ModelAdmin):
     list_display = ('region', 'title')
 
+class PostsAdmin(admin.ModelAdmin):
+    list_display = ('forum', 'author', 'title', 'content', 'timestamp', 'likes_count')
+
+class CommentsAdmin(admin.ModelAdmin):
+    list_display = ('post', 'author', 'content', 'timestamp')
+
 admin.site.register(Citizens, CitizensAdmin)
 admin.site.register(Addresses, AddressesAdmin)
 admin.site.register(Passports, PassportsAdmin)
@@ -41,3 +47,5 @@ admin.site.register(Notifications, NotificationsAdmin)
 admin.site.register(RenewalRequests, RenewalRequestsAdmin)
 admin.site.register(RegistrationRequests, RegistrationRequestsAdmin)
 admin.site.register(Forums, ForumsAdmin)
+admin.site.register(Posts, PostsAdmin)
+admin.site.register(Comments, CommentsAdmin)
