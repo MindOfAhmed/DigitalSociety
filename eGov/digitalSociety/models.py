@@ -129,7 +129,7 @@ class Forums(models.Model):
     members = models.ManyToManyField(Citizens, related_name='forums')
 
     def __str__(self):
-        return self.name
+        return self.title
 
 class RenewalRequests(models.Model):
     citizen = models.ForeignKey(Citizens, on_delete=models.CASCADE)

@@ -28,6 +28,9 @@ class RenewalRequestsAdmin(admin.ModelAdmin):
 class RegistrationRequestsAdmin(admin.ModelAdmin):
     list_display = ('citizen', 'request_type', 'proof_document', 'previous_owner_id', 'status', 'submitted_at', 'reviewed_at', 'rejection_reason')
 
+class ForumsAdmin(admin.ModelAdmin):
+    list_display = ('region', 'title')
+
 admin.site.register(Citizens, CitizensAdmin)
 admin.site.register(Addresses, AddressesAdmin)
 admin.site.register(Passports, PassportsAdmin)
@@ -37,3 +40,4 @@ admin.site.register(Vehicles, VehiclesAdmin)
 admin.site.register(Notifications, NotificationsAdmin)
 admin.site.register(RenewalRequests, RenewalRequestsAdmin)
 admin.site.register(RegistrationRequests, RegistrationRequestsAdmin)
+admin.site.register(Forums, ForumsAdmin)

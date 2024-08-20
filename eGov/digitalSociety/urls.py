@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import RenewalRequestsAPIView, RegistrationRequestsAPIView, UserDocumentsAPIView
+from .views import RenewalRequestsAPIView, RegistrationRequestsAPIView, UserDocumentsAPIView, ForumsAPIView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -27,7 +27,9 @@ urlpatterns = [
     path("api/user_documents/", UserDocumentsAPIView.as_view(), name="user_documents"),
     path("api/user_profile/", views.user_profile, name="user_profile"),
     path("api/change_password/", views.change_password, name="change_password"),
-    path("api/user_groups/", views.user_groups, name="user_groups")
+    path("api/user_groups/", views.user_groups, name="user_groups"),
+    path("api/create_forum/", views.create_forum, name="create_forum"),
+    path("api/get_forums/", ForumsAPIView.as_view(), name="get_forums"),
 ]
 ''' 
     When a POST request is made to /token/ with valid user credentials (username and password),

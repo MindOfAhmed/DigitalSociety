@@ -26,6 +26,11 @@ export const Profile = () => {
   });
   // define state variable that will keep track of the active tab key
   const [activeKey, setActiveKey] = useState("Passport");
+  // define state variable that will control the visibility of the modal
+  const [showModal, setShowModal] = useState(false);
+  // define handlers for showing and hiding the modal
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
   // derive the state variable that will store the user's documents
   const addresses = userDocuments?.addresses;
@@ -34,32 +39,6 @@ export const Profile = () => {
   const license = userDocuments?.license;
   const passport = userDocuments?.passport;
   const citizen = userDocuments?.citizen;
-
-  // on mount, load the user documents
-  useEffect(() => {
-    (async () => {
-      try {
-        // make an API call to fetch the user's documents
-        const response = await axios.get(
-          "http://127.0.0.1:8080/api/user_documents/"
-        );
-        if (!response || !response.data) {
-          setUserDocuments([]);
-          return;
-        }
-        // set the user documents in the state
-        setUserDocuments(response.data);
-      } catch (error) {
-        console.error("Failed to fetch user documents:", error);
-      }
-    })();
-  }, []);
-  console.log("User documents:", userDocuments);
-  // define state variable that will control the visibility of the modal
-  const [showModal, setShowModal] = useState(false);
-  // define handlers for showing and hiding the modal
-  const handleShowModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
 
   // define the handler for submitting the form
   const handleSubmit = async (
@@ -122,6 +101,25 @@ export const Profile = () => {
       }
     }
   };
+  // on mount, load the user documents
+  useEffect(() => {
+    (async () => {
+      try {
+        // make an API call to fetch the user's documents
+        const response = await axios.get(
+          "http://127.0.0.1:8080/api/user_documents/"
+        );
+        if (!response || !response.data) {
+          setUserDocuments([]);
+          return;
+        }
+        // set the user documents in the state
+        setUserDocuments(response.data);
+      } catch (error) {
+        console.error("Failed to fetch user documents:", error);
+      }
+    })();
+  }, []);
 
   return (
     // place each document in a separate tab

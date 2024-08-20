@@ -41,15 +41,17 @@ def user_groups(request):
 @api_view(['GET']) # only allow GET requests
 @permission_classes([IsAuthenticated]) # only authenticated users can access this view
 def get_notifications(request):
-    # retrieve the citizen
-    citizen = request.user.citizen
     try:
-        # retrieve the user's notifications
-        notifications = Notifications.objects.filter(citizen=citizen)
-        # serialize the notifications and send them to the frontend
-        return Response(NotificationsSerializer(notifications, many=True).data)
-    except Exception as e:
-        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        # retrieve the citizen
+        citizen = request.user.citizen
+    except Exception as e:   
+        # if the user isn't a citizen, return an empty list of notifications
+        return Response([], status=status.HTTP_200_OK)
+        # copilot ^_^
+    # retrieve the user's notifications
+    notifications = Notifications.objects.filter(citizen=citizen)
+    # serialize the notifications and send them to the frontend
+    return Response(NotificationsSerializer(notifications, many=True).data)
     
 '''This api view will retrieve the user's documents and send it to the frontend'''
 class UserDocumentsAPIView(generics.RetrieveAPIView):
@@ -630,3 +632,45 @@ def reject_registration_request(request, id):
         return Response({"message": "The registration request has been rejected successfully."}, status=status.HTTP_200_OK)
     except RegistrationRequests.DoesNotExist:
         return Response({"message": "The request does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+    
+'''This function will be used to create a new forum'''
+@api_view(['POST'])
+@permission_classes([IsAuthenticated]) # only authenticated users can access this view
+@group_required('Reps') # only Rpes can access this view
+def create_forum(request):
+    # retrieve the request data
+    title = request.data.get('title')
+    region = request.data.get('region')
+    # create a forum instance
+    forum = Forums.objects.create(title=title, region=region)
+    # add members based on the region
+    if region == 'nation':
+        members = Citizens.objects.all()
+    else:
+        members = Citizens.objects.filter(addresses__city__iexact=region).distinct()
+    # add the members to the forum
+    forum.members.add(*members)
+    return Response({"message": "The forum has been created successfully."}, status=status.HTTP_200_OK)
+
+'''This function will be used to send the forums to the frontend'''
+class ForumsAPIView(generics.ListAPIView):
+    serializer_class = ForumsSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # retrieve the user
+        user = self.request.user
+        # check if the user is in the Reps group
+        if user.groups.filter(name='Reps').exists():
+            return Forums.objects.all()
+        else: # citizen
+            # retrieve the user's regions
+            user_regions = list(Addresses.objects.filter(citizen=user.citizen).values_list('city', flat=True))
+            if user_regions:
+                user_regions.append('nation') # copilot ^_^
+                # filter forums by user's region or nationwide
+                return Forums.objects.filter(region__in=user_regions) # copilot ^_^
+            else:
+                # if the user has no registered region, only show nationwide forums
+                return Forums.objects.filter(region='nation')
+    

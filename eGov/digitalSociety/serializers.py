@@ -21,6 +21,12 @@ class NotificationsSerializer(serializers.ModelSerializer):
         model = Notifications
         fields = '__all__'
 
+'''This serializer will be used to send the forums to the frontend'''
+class ForumsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Forums
+        fields = '__all__'
+
 '''This serializer will be used to validate the citizen's personal information from the form'''
 class CitizenValidationSerializer(serializers.Serializer):
     national_id = serializers.CharField(max_length=30)
