@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ForumModal } from "./ForumModal";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const TownHall = ({ userGroups }) => {
   // define state variable to store the list of forums
@@ -38,6 +39,12 @@ export const TownHall = ({ userGroups }) => {
     }
   };
 
+  // useNavigate is a hook that allows us to navigate to different pages
+  const navigate = useNavigate();
+  const handleCardClick = (forumId) => {
+    // navigate to the forum page
+    navigate(`/townhall/forum/${forumId}`);
+  };
   // on mount, fetch the list of forums
   useEffect(() => {
     try {
@@ -55,6 +62,7 @@ export const TownHall = ({ userGroups }) => {
     }
   }, []);
 
+  console.log("forums ", forums);
   return (
     <>
       <div className="row my-3">
@@ -67,14 +75,24 @@ export const TownHall = ({ userGroups }) => {
         )}
       </div>
       {/* list of forums */}
-      {forums.map((forum, index) => (
-        <div key={index} className="card my-2">
-          <div className="card-body">
-            <h5 className="card-title">{forum.title}</h5>
-            <p className="card-text">Region: {forum.region}</p>
+      {forums.length > 0 ? (
+        forums.map((forum, index) => (
+          <div
+            key={index}
+            className="card my-2"
+            onClick={() => handleCardClick(forum.id)}
+          >
+            <div className="card-body">
+              <h5 className="card-title">{forum.title}</h5>
+              <p className="card-text">Region: {forum.region}</p>
+            </div>
           </div>
+        ))
+      ) : (
+        <div className="row text-center mt-3">
+          <h2>No available forums at the moment...</h2>
         </div>
-      ))}
+      )}
       {/* modal to create forums */}
       <ForumModal
         show={showModal}

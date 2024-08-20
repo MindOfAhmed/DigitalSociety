@@ -6,7 +6,7 @@ def profile_picture_path(instance, filename):
 
 class Citizens(models.Model):
     # map the citizen to the User model provided by Django
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='citizen') # null=True
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='citizen', null=True) # null=True
     national_id = models.CharField(max_length=30, primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -130,6 +130,27 @@ class Forums(models.Model):
 
     def __str__(self):
         return self.title
+
+class Posts(models.Model):
+    forum = models.ForeignKey(Forums, on_delete=models.CASCADE)
+    author = models.ForeignKey(Citizens, on_delete=models.CASCADE)
+    title = models.CharField(max_length=30)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    likes_count = models.PositiveIntegerField(default=0) 
+    # order by most recent
+    class Meta:
+        ordering = ['-timestamp'] 
+        # copilot ^_^
+
+class Comments(models.Model):
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(Citizens, on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    # order by most recent
+    class Meta:
+        ordering = ['-timestamp'] 
 
 class RenewalRequests(models.Model):
     citizen = models.ForeignKey(Citizens, on_delete=models.CASCADE)

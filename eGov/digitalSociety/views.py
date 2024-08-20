@@ -642,7 +642,7 @@ def create_forum(request):
     title = request.data.get('title')
     region = request.data.get('region')
     # create a forum instance
-    forum = Forums.objects.create(title=title, region=region)
+    forum = Forums.objects.create(title=title, region=region, author=request.user.citizen)
     # add members based on the region
     if region == 'nation':
         members = Citizens.objects.all()
@@ -673,4 +673,14 @@ class ForumsAPIView(generics.ListAPIView):
             else:
                 # if the user has no registered region, only show nationwide forums
                 return Forums.objects.filter(region='nation')
-    
+
+'''This function will retrieve a single forum based on it's ID'''
+@api_view(['GET'])
+def get_forum(request, id):
+    try:
+        # retrieve the forum
+        forum = Forums.objects.get(id=id)
+        # serialize the forum data and send it to the frontend
+        return Response(ForumsSerializer(forum).data)
+    except Forums.DoesNotExist:
+        return Response({"message": "The forum does not exist."}, status=status.HTTP_400_BAD_REQUEST)

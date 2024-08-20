@@ -27,6 +27,7 @@ import { PropertyRegistrationForm } from "./components/PropertyRegistrationForm"
 import { VehicleRegistrationForm } from "./components/VehicleRegistrationForm";
 import { Success } from "./components/Success";
 import { getUserGroups } from "./getUserGroups";
+import { Forum } from "./components/Forum";
 
 function App() {
   // the following states and handlers have been lifted up from the nav component
@@ -110,6 +111,7 @@ function App() {
                 // </ProtectedRoute>
               }
             />
+            <Route path="/townhall/forum/:forumId" element={<Forum />} />
             <Route
               path="/requests"
               element={
