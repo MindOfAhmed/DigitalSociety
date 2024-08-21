@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { PostsModal } from "./PostsModal";
 
@@ -8,6 +9,7 @@ export const Forum = () => {
   const { forumId } = useParams();
   // define state variables to store the forum data
   const [forum, setForum] = useState(null);
+  const [posts, setPosts] = useState([]);
   // define state variable that will control the visibility of the modal
   const [showModal, setShowModal] = useState(false);
   // define handlers for showing and hiding the modal
@@ -40,20 +42,35 @@ export const Forum = () => {
       console.error("Failed to create post", error);
     }
   };
+  // useNavigate is a hook that allows us to navigate to different pages
+  const navigate = useNavigate();
+  // define a handler for clicking on a post
+  const handlePostClick = (postId) => {
+    // navigate to the post page
+    navigate(`/townhall/forum/${forumId}/post/${postId}`);
+  };
 
   // on mount, fetch the forum data
   useEffect(() => {
     try {
       // make an API call to fetch the forum data
       (async () => {
-        const response = await axios.get(
+        const forumResponse = await axios.get(
           `http://127.0.0.1:8080/api/get_forum/${forumId}/`
         );
-        if (!response || !response.data) {
+        if (!forumResponse || !forumResponse.data) {
           throw new Error("Invalid server response");
         }
         // store the forum data in state
-        setForum(response.data);
+        setForum(forumResponse.data);
+        const postsResponse = await axios.get(
+          `http://127.0.0.1:8080/api/get_posts/${forumId}/`
+        );
+        if (!postsResponse || !postsResponse.data) {
+          throw new Error("Invalid server response");
+        }
+        // store the posts data in state
+        setPosts(postsResponse.data);
       })();
     } catch (error) {
       console.error("Failed to fetch forum", error);
@@ -74,6 +91,30 @@ export const Forum = () => {
       <button className="button" onClick={handleShowModal}>
         Create Post
       </button>
+      {/* list of posts */}
+      {posts.length > 0 ? (
+        posts.map((post, index) => (
+          <div
+            key={index}
+            className="card my-2"
+            onClick={() => handlePostClick(post.id)}
+          >
+            <div className="card-body">
+              <h5 className="card-title">{post.title}</h5>
+              <p className="card-text">
+                {post.content.split(" ").splice(0, 10).join(" ")}...
+              </p>
+              <p className="card-text">
+                created by: {post.author} at {post.timestamp}
+              </p>
+            </div>
+          </div>
+        ))
+      ) : (
+        <div className="row text-center mt-3">
+          <h2>No available posts at the moment...</h2>
+        </div>
+      )}
       {/* modal to create posts */}
       <PostsModal
         show={showModal}

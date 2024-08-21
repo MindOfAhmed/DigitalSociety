@@ -32,6 +32,9 @@ urlpatterns = [
     path("api/get_forums/", ForumsAPIView.as_view(), name="get_forums"),
     path("api/get_forum/<int:id>/", views.get_forum, name="get_forum"),
     path("api/create_post/", views.create_post, name="create_post"),
+    path("api/get_posts/<int:forum_id>/", views.get_posts, name="get_posts"),
+    path("api/get_post/<int:id>/", views.get_post, name="get_post"),
+    path("api/create_comment/<int:post_id>/", views.create_comment, name="create_comment"),
 ]
 ''' 
     When a POST request is made to /token/ with valid user credentials (username and password),

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import *
+from django.conf import settings
 
 '''This serializer is used to as a related field in the citizen serializer to include the username in the response'''
 class UserSerializer(serializers.ModelSerializer):
@@ -27,6 +28,33 @@ class ForumsSerializer(serializers.ModelSerializer):
         model = Forums
         fields = '__all__'
 
+'''This serialzier will be used to send the posts to the frontend'''
+class PostsSerializer(serializers.ModelSerializer):
+    # retireve the author's username & profile picture as related fields
+    author = serializers.SerializerMethodField()
+    picture = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Posts
+        fields = '__all__'
+        extra_fields = ['author']
+    
+    def get_author(self, obj):
+        return obj.author.user.username
+    
+    def get_picture(self, obj):
+        # prepend the base url to the picture url
+        picture = obj.author.picture.url
+        picture = f"{settings.BASE_URL}{picture}"
+        return picture
+    
+    # format the timestamp into YYYY-MM-DD HH
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['timestamp'] = representation['timestamp'].split('T')[0] + ' ' + representation['timestamp'].split('T')[1].split('.')[0]
+        return representation
+    # copilot ^_^
+        
 '''This serializer will be used to validate the citizen's personal information from the form'''
 class CitizenValidationSerializer(serializers.Serializer):
     national_id = serializers.CharField(max_length=30)

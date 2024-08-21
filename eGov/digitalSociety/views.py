@@ -681,7 +681,7 @@ def get_forum(request, id):
         # retrieve the forum
         forum = Forums.objects.get(id=id)
         # serialize the forum data and send it to the frontend
-        return Response(ForumsSerializer(forum).data)
+        return Response(ForumsSerializer(forum).data, status=status.HTTP_200_OK)
     except Forums.DoesNotExist:
         return Response({"message": "The forum does not exist."}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -699,3 +699,43 @@ def create_post(request):
     # create a new post instance
     Posts.objects.create(title=title, content=content, author=citizen, forum=forum)
     return Response({"message": "The post has been created successfully."}, status=status.HTTP_200_OK)
+
+'''This function will be used to send the posts to the frontend'''
+@api_view(['GET'])
+@permission_classes([IsAuthenticated]) # only authenticated users can access this view
+def get_posts(request, forum_id):
+    try:
+        # retrieve the forum
+        forum = Forums.objects.get(id=forum_id)
+        # retrieve the forum's posts
+        posts = Posts.objects.filter(forum=forum)
+        # serialize the posts and send them to the frontend
+        return Response(PostsSerializer(posts, many=True).data, status=status.HTTP_200_OK)
+    except Forums.DoesNotExist:
+        return Response({"message": "The forum does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+
+'''This function will retrieve a single post based on it's ID'''
+@api_view(['GET'])
+@permission_classes([IsAuthenticated]) # only authenticated users can access this view
+def get_post(request, id):
+    try:
+        # retrieve the post
+        post = Posts.objects.get(id=id)
+        # serialize the post data and send it to the frontend
+        serializer = PostsSerializer(post)        
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    except Posts.DoesNotExist:
+        return Response({"message": "The post does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+
+'''This function will be used to add a comment'''
+@api_view(['POST'])
+@permission_classes([IsAuthenticated]) # only authenticated users can access this
+def create_comment(request, post_id):
+    # retrieve the content from the request
+    content = request.data.get('content')
+    # retrieve the post and the citizen
+    post = Posts.objects.get(id=post_id)
+    citizen = request.user.citizen
+    # create a new comment instance
+    Comments.objects.create(content=content, post=post, author=citizen)
+    return Response({"message": "The comment has been created successfully."}, status=status.HTTP_200_OK)
