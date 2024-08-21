@@ -3,14 +3,17 @@ import { faThumbsUp, faComment } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import axios from "axios";
 
-export const Post = ({ post }) => {
+export const Post = ({ post, commentsCount }) => {
   // define state variable to control comment form's visibility
   const [showCommentForm, setShowCommentForm] = useState(false);
   // define state variable to store the comment data
   const [comment, setComment] = useState("");
+  // define state cariable to store the likes count
+  const [likesCount, setLikesCount] = useState(post.likes_count);
 
   // define the form submission handler
   const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       // make an API call to submit the comment
       const response = await axios.post(
@@ -27,6 +30,23 @@ export const Post = ({ post }) => {
       // hide the comment form
       setShowCommentForm(false);
     } catch (error) {}
+  };
+  // define a handler for when the thumbs up icon is clicked
+  const handleLikeCount = async () => {
+    try {
+      // make an API call to update the like count
+      const response = await axios.post(
+        `http://127.0.0.1:8080/api/update_likes/${post.id}/`
+      );
+      if (!response || !response.data) {
+        throw new Error("Invalid server response");
+      }
+      console.log(response.data);
+      // update the likes count in state
+      setLikesCount(response.data.likes_count); // copilot ^_^
+    } catch (error) {
+      console.error("Failed to update like count", error);
+    }
   };
 
   return (
@@ -45,12 +65,21 @@ export const Post = ({ post }) => {
       <p className="mt-2">{post.content}</p>
       <div className="d-flex gap-3 align-items-center">
         <span>
-          <FontAwesomeIcon icon={faThumbsUp} /> {post.likes_count}
+          <FontAwesomeIcon
+            icon={faThumbsUp}
+            onClick={handleLikeCount}
+            className="me-2"
+          />
+          {likesCount}
         </span>
-        <FontAwesomeIcon
-          icon={faComment}
-          onClick={() => setShowCommentForm((s) => !s)}
-        />
+        <span>
+          <FontAwesomeIcon
+            icon={faComment}
+            onClick={() => setShowCommentForm((s) => !s)}
+            className="me-2"
+          />
+          {commentsCount}
+        </span>
       </div>
       {showCommentForm && (
         <form className="mt-3" onSubmit={handleSubmit}>

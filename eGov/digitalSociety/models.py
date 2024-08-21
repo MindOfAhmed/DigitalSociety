@@ -138,6 +138,8 @@ class Posts(models.Model):
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     likes_count = models.PositiveIntegerField(default=0) 
+    likes = models.ManyToManyField(Citizens, related_name='liked_posts', blank=True)
+
     # order by most recent
     class Meta:
         ordering = ['-timestamp'] 
@@ -148,9 +150,6 @@ class Comments(models.Model):
     author = models.ForeignKey(Citizens, on_delete=models.CASCADE)
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
-    # order by most recent
-    class Meta:
-        ordering = ['-timestamp'] 
 
 class RenewalRequests(models.Model):
     citizen = models.ForeignKey(Citizens, on_delete=models.CASCADE)

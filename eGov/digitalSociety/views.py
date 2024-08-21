@@ -731,11 +731,52 @@ def get_post(request, id):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated]) # only authenticated users can access this
 def create_comment(request, post_id):
-    # retrieve the content from the request
-    content = request.data.get('content')
-    # retrieve the post and the citizen
-    post = Posts.objects.get(id=post_id)
-    citizen = request.user.citizen
-    # create a new comment instance
-    Comments.objects.create(content=content, post=post, author=citizen)
-    return Response({"message": "The comment has been created successfully."}, status=status.HTTP_200_OK)
+    try:
+        # retrieve the post and the citizen
+        post = Posts.objects.get(id=post_id)
+        # retrieve the content from the request
+        content = request.data.get('content')
+        citizen = request.user.citizen
+        # create a new comment instance
+        Comments.objects.create(content=content, post=post, author=citizen)
+        return Response({"message": "The comment has been created successfully."}, status=status.HTTP_200_OK)
+    except Posts.DoesNotExist:
+        return Response({"message": "The post does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+
+'''This function will be used to send the comments to the frontend'''
+@api_view(['GET'])
+@permission_classes([IsAuthenticated]) # only authenticated users can access this view
+def get_comments(request, post_id):
+    try:
+        # retrieve the post
+        post = Posts.objects.get(id=post_id)
+        # retrieve the post's comments
+        comments = Comments.objects.filter(post=post)
+        # serialize the comments and send them to the frontend
+        return Response(CommentsSerializer(comments, many=True).data, status=status.HTTP_200_OK)
+    except Posts.DoesNotExist:
+        return Response({"message": "The post does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+
+'''This function will be used to update the likes count of a post'''
+@api_view(['POST'])
+@permission_classes([IsAuthenticated]) # only authenticated users can access this view
+def update_likes(request, post_id):
+    try:
+        # retrieve the post
+        post = Posts.objects.get(id=post_id)
+        # retrieve the citizen
+        citizen = request.user.citizen
+        # check if the citizen is already in the post's likes
+        if citizen in post.likes.all():
+            # remove the citizen from the likes
+            post.likes.remove(citizen)
+        else:
+            # add the citizen to the likes
+            post.likes.add(citizen)
+        # update the like count
+        post.likes_count = post.likes.count()
+        post.save()
+        # send a response including the likes count so that it can be displayed in the frontend
+        return Response({"message": "The likes have been updated successfully.", "likes_count" : post.likes_count}, status=status.HTTP_200_OK)
+    except Posts.DoesNotExist:
+        return Response({"message": "The post does not exist."}, status=status.HTTP_400_BAD_REQUEST)

@@ -54,7 +54,43 @@ class PostsSerializer(serializers.ModelSerializer):
         representation['timestamp'] = representation['timestamp'].split('T')[0] + ' ' + representation['timestamp'].split('T')[1].split('.')[0]
         return representation
     # copilot ^_^
-        
+
+'''This serializer will be used to send the comments to the frontend'''
+class CommentsSerializer(serializers.ModelSerializer):
+    # retireve the author's username & profile picture as related fields
+    author = serializers.SerializerMethodField()
+    picture = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Comments
+        fields = '__all__'
+    
+    def get_author(self, obj):
+        return obj.author.user.username
+    
+    def get_picture(self, obj):
+        # prepend the base url to the picture url
+        picture = obj.author.picture.url
+        picture = f"{settings.BASE_URL}{picture}"
+        return picture
+    
+    # format the timestamp into YYYY-MM-DD HH
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        timestamp = representation['timestamp']
+        # split the timestamp into date and time
+        date, time = timestamp.split('T')
+        # split the date into year, month, and day
+        year, month, day = date.split('-')
+        # split the time into hour, minute, and second
+        hour, minute, second = time.split(':')
+        # format the date and time
+        formatted_date = f"{int(day)}{'th' if int(day) in [1, 21, 31] else 'st' if int(day) in [2, 22] else 'nd' if int(day) in [3, 23] else 'rd'} {month} {year}"
+        formatted_time = f"{int(hour)}:{minute} {'AM' if int(hour) < 12 else 'PM'}"
+        representation['timestamp'] = f"{formatted_date} at {formatted_time}"
+        return representation
+    # copilot ^_^
+
 '''This serializer will be used to validate the citizen's personal information from the form'''
 class CitizenValidationSerializer(serializers.Serializer):
     national_id = serializers.CharField(max_length=30)
