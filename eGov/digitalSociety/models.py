@@ -155,7 +155,7 @@ class Comments(models.Model):
 
     # order by most recent or most liked (upvotes)
     class Meta:
-        ordering = ['-likes_count', '-timestamp'] 
+        ordering = ['-likes_count', 'timestamp'] 
 
 class RenewalRequests(models.Model):
     citizen = models.ForeignKey(Citizens, on_delete=models.CASCADE)
