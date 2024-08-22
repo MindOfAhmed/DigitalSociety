@@ -760,7 +760,7 @@ def get_comments(request, post_id):
 '''This function will be used to update the likes count of a post'''
 @api_view(['POST'])
 @permission_classes([IsAuthenticated]) # only authenticated users can access this view
-def update_likes(request, post_id):
+def update_post_likes(request, post_id):
     try:
         # retrieve the post
         post = Posts.objects.get(id=post_id)
@@ -780,3 +780,58 @@ def update_likes(request, post_id):
         return Response({"message": "The likes have been updated successfully.", "likes_count" : post.likes_count}, status=status.HTTP_200_OK)
     except Posts.DoesNotExist:
         return Response({"message": "The post does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+
+'''This function will be used to update the likes count of a comment'''
+@api_view(['POST'])
+@permission_classes([IsAuthenticated]) # only authenticated users can access this view
+def update_comment_likes(request, comment_id):
+    try:
+        # retrieve the comment
+        comment = Comments.objects.get(id=comment_id)
+        # retrieve the citizen
+        citizen = request.user.citizen
+        # check if the citizen is already in the comment's likes
+        if citizen in comment.likes.all():
+            # remove the citizen from the likes
+            comment.likes.remove(citizen)
+        else:
+            # add the citizen to the likes
+            comment.likes.add(citizen)
+        # update the like count
+        comment.likes_count = comment.likes.count()
+        comment.save()
+        # send a response including the likes count so that it can be displayed in the frontend
+        return Response({"message": "The likes have been updated successfully.", "likes_count" : comment.likes_count}, status=status.HTTP_200_OK)
+    except Comments.DoesNotExist:
+        return Response({"message": "The comment does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+
+'''This function will be used to send the username for the logged in user to the frontend'''
+@api_view(['GET'])
+@permission_classes([IsAuthenticated]) # only authenticated users can access this view
+def get_user(request):
+    return Response({"username": request.user.username}, status=status.HTTP_200_OK)
+
+'''This function will be used to delete a comment instance'''
+@api_view(['POST'])
+@permission_classes([IsAuthenticated]) # only authenticated users can access this view
+def delete_comment(request, id):
+    try:
+        # retrieve and delete the comment
+        comment = Comments.objects.get(id=id)
+        comment.delete()
+        return Response({"message": "The comment has been deleted successfully."}, status=status.HTTP_200_OK)
+    except Comments.DoesNotExist:
+        return Response({"message": "The comment does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+
+'''This function will be used to delete a post instance'''
+@api_view(['POST'])
+@permission_classes([IsAuthenticated]) # only authenticated users can access this
+def delete_post(request, id):
+    try:
+        # retrieve and delete the post
+        post = Posts.objects.get(id=id)
+        post.delete()
+        return Response({"message": "The post has been deleted successfully."}, status=status.HTTP_200_OK)
+    except Posts.DoesNotExist:
+        return Response({"message": "The post does not exist."}, status=status.HTTP_400_BAD_REQUEST)
+

@@ -34,6 +34,8 @@ export const TownHall = ({ userGroups }) => {
         throw new Error("Invalid server response");
       }
       handleCloseModal();
+      // refresh the page to load the new forum
+      window.location.reload();
     } catch (error) {
       console.error("Failed to create forum", error);
     }

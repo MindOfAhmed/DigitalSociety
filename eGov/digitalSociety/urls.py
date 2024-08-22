@@ -36,7 +36,11 @@ urlpatterns = [
     path("api/get_post/<int:id>/", views.get_post, name="get_post"),
     path("api/create_comment/<int:post_id>/", views.create_comment, name="create_comment"),
     path("api/get_comments/<int:post_id>/", views.get_comments, name="get_comments"),
-    path("api/update_likes/<int:post_id>/", views.update_likes, name="update_likes"),
+    path("api/update_post_likes/<int:post_id>/", views.update_post_likes, name="update_post_likes"),
+    path("api/update_comment_likes/<int:comment_id>/", views.update_comment_likes, name="update_comment_likes"),
+    path("api/get_user/", views.get_user, name="get_user"),
+    path("api/delete_comment/<int:id>/", views.delete_comment, name="delete_comment"),
+    path("api/delete_post/<int:id>/", views.delete_post, name="delete_post"),
 ]
 ''' 
     When a POST request is made to /token/ with valid user credentials (username and password),

@@ -38,6 +38,8 @@ export const Forum = () => {
         throw new Error("Invalid server response");
       }
       handleCloseModal();
+      // refresh the page to load the new post
+      window.location.reload();
     } catch (error) {
       console.error("Failed to create post", error);
     }
@@ -88,9 +90,11 @@ export const Forum = () => {
         <h1>{forum.title}</h1>
       </div>
       {/* create post button */}
-      <button className="button" onClick={handleShowModal}>
-        Create Post
-      </button>
+      <div className="d-flex justify-content-end align-items-center">
+        <button className="button" onClick={handleShowModal}>
+          Create Post
+        </button>
+      </div>
       {/* list of posts */}
       {posts.length > 0 ? (
         posts.map((post, index) => (

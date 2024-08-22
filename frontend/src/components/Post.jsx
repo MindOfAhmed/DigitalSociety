@@ -2,13 +2,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faComment } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export const Post = ({ post, commentsCount }) => {
+export const Post = ({ post, commentsCount, loggedUser }) => {
   // define state variable to control comment form's visibility
   const [showCommentForm, setShowCommentForm] = useState(false);
   // define state variable to store the comment data
   const [comment, setComment] = useState("");
-  // define state cariable to store the likes count
+  // define state variable to store the likes count
   const [likesCount, setLikesCount] = useState(post.likes_count);
 
   // define the form submission handler
@@ -29,14 +31,18 @@ export const Post = ({ post, commentsCount }) => {
       setComment("");
       // hide the comment form
       setShowCommentForm(false);
-    } catch (error) {}
+      // refresh the page to load the new comment
+      window.location.reload();
+    } catch (error) {
+      console.error("Failed to submit comment", error);
+    }
   };
   // define a handler for when the thumbs up icon is clicked
   const handleLikeCount = async () => {
     try {
       // make an API call to update the like count
       const response = await axios.post(
-        `http://127.0.0.1:8080/api/update_likes/${post.id}/`
+        `http://127.0.0.1:8080/api/update_post_likes/${post.id}/`
       );
       if (!response || !response.data) {
         throw new Error("Invalid server response");
@@ -45,7 +51,25 @@ export const Post = ({ post, commentsCount }) => {
       // update the likes count in state
       setLikesCount(response.data.likes_count); // copilot ^_^
     } catch (error) {
-      console.error("Failed to update like count", error);
+      console.error("Failed to update post like count", error);
+    }
+  };
+  // useNavigate is a hook that allows us to navigate to different pages
+  const navigate = useNavigate();
+  // define a handler for deleting a post
+  const handleDeletePost = async (postId) => {
+    try {
+      // make an API call to delete the post
+      const response = await axios.post(
+        `http://127.0.0.1:8080/api/delete_post/${post.id}/`
+      );
+      if (!response || !response.data) {
+        throw new Error("Invalid server response");
+      }
+      // navigate back to the townhall
+      navigate("/townhall");
+    } catch (error) {
+      console.error("Failed to delete post", error);
     }
   };
 
@@ -80,6 +104,10 @@ export const Post = ({ post, commentsCount }) => {
           />
           {commentsCount}
         </span>
+        {/* if the post author is the logged in user, display the delete link */}
+        {loggedUser === post.author && (
+          <Link onClick={() => handleDeletePost(post.id)}>Delete</Link>
+        )}
       </div>
       {showCommentForm && (
         <form className="mt-3" onSubmit={handleSubmit}>
@@ -102,4 +130,3 @@ export const Post = ({ post, commentsCount }) => {
     </div>
   );
 };
-//style={{ backgroundColor: "pink" }}
