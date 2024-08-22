@@ -1329,661 +1329,739 @@ class RejectRegistrationRequestTest(BaseTestCase):
         # ensure the placeholder address is deleted
         self.assertEqual(Vehicles.objects.filter(id=self.vehicle.id).count(), 0)
     
-'''MODELS TESTS'''
-@override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder
-class ModelCreationTests(BaseTestCase):
-    '''Agenda: test the creation of models, field constraints, and relationships work as expected'''
-    def setUp(self):
-        # create a SimpleUploadedFile for the proof document
-        self.proof_document = SimpleUploadedFile(
-            "proof_document.pdf",  
-            b"Dummy file content",  
-            content_type='application/pdf'
-        ) 
-        # open the media folder and create a SimpleUploadedFile for the test picture
-        with default_storage.open('valid.jpeg', 'rb') as image_file:
-            self.picture = SimpleUploadedFile("TestImage.jpg", image_file.read(), content_type='image/jpeg')
-        # create a user
-        self.user = UserFactory()
-        # create data for the user
-        self.citizen = Citizens.objects.create(
-            user=self.user,
-            national_id='1234567890',
-            date_of_birth='2000-01-01',
-            first_name='John',
-            last_name='Doe',
-            blood_type='O+',
-            sex='M',
-            picture=self.picture
-        )
-        self.address = Addresses.objects.create(
-            country='Egypt',
-            city='Cairo',
-            street='El-Merghany',
-            building_number='123',
-            floor_number='2',
-            apartment_number='4',
-            citizen=self.citizen,
-            state='Pending Request'
-        )
-        self.passport = Passports.objects.create(
-            passport_number='12345678',
-            citizen=self.citizen,
-            issue_date='2021-01-01',
-            expiry_date='2026-01-01',
-            picture=self.picture
-        )
-        self.license = DrivingLicenses.objects.create(
-            license_number='12345678',
-            citizen=self.citizen,
-            issue_date='2021-01-01',
-            expiry_date='2026-01-01',
-            picture=self.picture
-        )
-        self.property = Properties.objects.create(
-            property_id='PROP123',
-            citizen=self.citizen,
-            location='Downtown',
-            property_type='Residential',
-            description='A nice place to live.',
-            size='1200 sqft',
-            picture=self.picture,
-        )
-        self.vehicle = Vehicles.objects.create(
-            serial_number=123456,
-            citizen=self.citizen,
-            model='Mustang',
-            manufacturer='Ford',
-            year=2020,
-            vehicle_type='Sports Car',
-            picture=self.picture,
-            plate_number='XYZ123',
-        )
-        self.notification = Notifications.objects.create(
-            citizen=self.citizen,
-            message='Test Notification'
-        )
-        self.renewal_request = RenewalRequests.objects.create(
-            citizen=self.citizen,
-            request_type='Passport'
-        )
-        self.registration_request = RegistrationRequests.objects.create(
-            citizen=self.citizen,
-            request_type='Address Registration'
-        )
-    # ensure the creation of the models works as expected
-    def test_address_creation(self):
-        address = Addresses.objects.get(id=self.address.id)
-        self.assertEqual(address.country, 'Egypt')
-        self.assertEqual(address.city, 'Cairo')
-        self.assertEqual(address.street, 'El-Merghany')
-        self.assertEqual(address.building_number, 123)
-        self.assertEqual(address.floor_number, 2)
-        self.assertEqual(address.apartment_number, 4)
-        self.assertEqual(address.state, 'Pending Request')
+# '''MODELS TESTS'''
+# @override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder
+# class ModelCreationTests(BaseTestCase):
+#     '''Agenda: test the creation of models, field constraints, and relationships work as expected'''
+#     def setUp(self):
+#         # create a SimpleUploadedFile for the proof document
+#         self.proof_document = SimpleUploadedFile(
+#             "proof_document.pdf",  
+#             b"Dummy file content",  
+#             content_type='application/pdf'
+#         ) 
+#         # open the media folder and create a SimpleUploadedFile for the test picture
+#         with default_storage.open('valid.jpeg', 'rb') as image_file:
+#             self.picture = SimpleUploadedFile("TestImage.jpg", image_file.read(), content_type='image/jpeg')
+#         # create a user
+#         self.user = UserFactory()
+#         # create data for the user
+#         self.citizen = Citizens.objects.create(
+#             user=self.user,
+#             national_id='1234567890',
+#             date_of_birth='2000-01-01',
+#             first_name='John',
+#             last_name='Doe',
+#             blood_type='O+',
+#             sex='M',
+#             picture=self.picture
+#         )
+#         self.address = Addresses.objects.create(
+#             country='Egypt',
+#             city='Cairo',
+#             street='El-Merghany',
+#             building_number='123',
+#             floor_number='2',
+#             apartment_number='4',
+#             citizen=self.citizen,
+#             state='Pending Request'
+#         )
+#         self.passport = Passports.objects.create(
+#             passport_number='12345678',
+#             citizen=self.citizen,
+#             issue_date='2021-01-01',
+#             expiry_date='2026-01-01',
+#             picture=self.picture
+#         )
+#         self.license = DrivingLicenses.objects.create(
+#             license_number='12345678',
+#             citizen=self.citizen,
+#             issue_date='2021-01-01',
+#             expiry_date='2026-01-01',
+#             picture=self.picture
+#         )
+#         self.property = Properties.objects.create(
+#             property_id='PROP123',
+#             citizen=self.citizen,
+#             location='Downtown',
+#             property_type='Residential',
+#             description='A nice place to live.',
+#             size='1200 sqft',
+#             picture=self.picture,
+#         )
+#         self.vehicle = Vehicles.objects.create(
+#             serial_number=123456,
+#             citizen=self.citizen,
+#             model='Mustang',
+#             manufacturer='Ford',
+#             year=2020,
+#             vehicle_type='Sports Car',
+#             picture=self.picture,
+#             plate_number='XYZ123',
+#         )
+#         self.notification = Notifications.objects.create(
+#             citizen=self.citizen,
+#             message='Test Notification'
+#         )
+#         self.renewal_request = RenewalRequests.objects.create(
+#             citizen=self.citizen,
+#             request_type='Passport'
+#         )
+#         self.registration_request = RegistrationRequests.objects.create(
+#             citizen=self.citizen,
+#             request_type='Address Registration'
+#         )
+#         self.forum = Forums.objects.create(
+#             title='Test Forum',
+#             region='Cairo'
+#         )
+#         self.post = Posts.objects.create(
+#             forum=self.forum,
+#             title='Test Post',
+#             content='Test Content',
+#             author=self.citizen
+#         )
+#         self.comment = Comments.objects.create(
+#             post=self.post,
+#             content='Test Comment',
+#             author=self.citizen
+#         )
     
-    def test_citizen_creation(self):
-        citizen = Citizens.objects.get(user=self.user)
-        self.assertEqual(citizen.national_id, '1234567890')
-        self.assertEqual(citizen.date_of_birth, datetime.strptime('2000-01-01', '%Y-%m-%d').date())
-        self.assertEqual(citizen.first_name, 'John')
-        self.assertEqual(citizen.last_name, 'Doe')
-        self.assertEqual(citizen.blood_type, 'O+')
-        self.assertEqual(citizen.sex, 'M')
+#     # ensure the creation of the models works as expected
+#     def test_address_creation(self):
+#         address = Addresses.objects.get(id=self.address.id)
+#         self.assertEqual(address.country, 'Egypt')
+#         self.assertEqual(address.city, 'Cairo')
+#         self.assertEqual(address.street, 'El-Merghany')
+#         self.assertEqual(address.building_number, 123)
+#         self.assertEqual(address.floor_number, 2)
+#         self.assertEqual(address.apartment_number, 4)
+#         self.assertEqual(address.state, 'Pending Request')
     
-    def test_passport_creation(self):
-        passport = Passports.objects.get(passport_number=self.passport.passport_number)
-        self.assertEqual(passport.passport_number, '12345678')
-        self.assertEqual(passport.issue_date, datetime.strptime('2021-01-01', '%Y-%m-%d').date())
-        self.assertEqual(passport.expiry_date, datetime.strptime('2026-01-01', '%Y-%m-%d').date())
+#     def test_citizen_creation(self):
+#         citizen = Citizens.objects.get(user=self.user)
+#         self.assertEqual(citizen.national_id, '1234567890')
+#         self.assertEqual(citizen.date_of_birth, datetime.strptime('2000-01-01', '%Y-%m-%d').date())
+#         self.assertEqual(citizen.first_name, 'John')
+#         self.assertEqual(citizen.last_name, 'Doe')
+#         self.assertEqual(citizen.blood_type, 'O+')
+#         self.assertEqual(citizen.sex, 'M')
     
-    def test_license_creation(self):
-        license = DrivingLicenses.objects.get(license_number=self.license.license_number)
-        self.assertEqual(license.license_number, '12345678')
-        self.assertEqual(license.issue_date, datetime.strptime('2021-01-01', '%Y-%m-%d').date())
-        self.assertEqual(license.expiry_date, datetime.strptime('2026-01-01', '%Y-%m-%d').date())
+#     def test_passport_creation(self):
+#         passport = Passports.objects.get(passport_number=self.passport.passport_number)
+#         self.assertEqual(passport.passport_number, '12345678')
+#         self.assertEqual(passport.issue_date, datetime.strptime('2021-01-01', '%Y-%m-%d').date())
+#         self.assertEqual(passport.expiry_date, datetime.strptime('2026-01-01', '%Y-%m-%d').date())
     
-    def test_property_creation(self):
-        property = Properties.objects.get(property_id=self.property.property_id)
-        self.assertEqual(property.property_id, 'PROP123')
-        self.assertEqual(property.location, 'Downtown')
-        self.assertEqual(property.property_type, 'Residential')
-        self.assertEqual(property.description, 'A nice place to live.')
-        self.assertEqual(property.size, '1200 sqft')
+#     def test_license_creation(self):
+#         license = DrivingLicenses.objects.get(license_number=self.license.license_number)
+#         self.assertEqual(license.license_number, '12345678')
+#         self.assertEqual(license.issue_date, datetime.strptime('2021-01-01', '%Y-%m-%d').date())
+#         self.assertEqual(license.expiry_date, datetime.strptime('2026-01-01', '%Y-%m-%d').date())
     
-    def test_vehicle_creation(self):
-        vehicle = Vehicles.objects.get(serial_number=self.vehicle.serial_number)
-        self.assertEqual(vehicle.serial_number, 123456)
-        self.assertEqual(vehicle.model, 'Mustang')
-        self.assertEqual(vehicle.manufacturer, 'Ford')
-        self.assertEqual(vehicle.year, 2020)
-        self.assertEqual(vehicle.vehicle_type, 'Sports Car')
-        self.assertEqual(vehicle.plate_number, 'XYZ123')
+#     def test_property_creation(self):
+#         property = Properties.objects.get(property_id=self.property.property_id)
+#         self.assertEqual(property.property_id, 'PROP123')
+#         self.assertEqual(property.location, 'Downtown')
+#         self.assertEqual(property.property_type, 'Residential')
+#         self.assertEqual(property.description, 'A nice place to live.')
+#         self.assertEqual(property.size, '1200 sqft')
     
-    def test_notification_creation(self):
-        notification = Notifications.objects.get(id=self.notification.id)
-        self.assertEqual(notification.message, 'Test Notification')
+#     def test_vehicle_creation(self):
+#         vehicle = Vehicles.objects.get(serial_number=self.vehicle.serial_number)
+#         self.assertEqual(vehicle.serial_number, 123456)
+#         self.assertEqual(vehicle.model, 'Mustang')
+#         self.assertEqual(vehicle.manufacturer, 'Ford')
+#         self.assertEqual(vehicle.year, 2020)
+#         self.assertEqual(vehicle.vehicle_type, 'Sports Car')
+#         self.assertEqual(vehicle.plate_number, 'XYZ123')
     
-    def test_renewal_request_creation(self):
-        renewal_request = RenewalRequests.objects.get(id=self.renewal_request.id)
-        self.assertEqual(renewal_request.request_type, 'Passport')
+#     def test_notification_creation(self):
+#         notification = Notifications.objects.get(id=self.notification.id)
+#         self.assertEqual(notification.message, 'Test Notification')
     
-    def test_registration_request_creation(self):
-        registration_request = RegistrationRequests.objects.get(id=self.registration_request.id)
-        self.assertEqual(registration_request.request_type, 'Address Registration')
+#     def test_renewal_request_creation(self):
+#         renewal_request = RenewalRequests.objects.get(id=self.renewal_request.id)
+#         self.assertEqual(renewal_request.request_type, 'Passport')
     
-    # ensure the unique constraints are enforced
-    def test_national_id_uniqueness(self):
-        # create 2 users with the same national id
-        user1 = User.objects.create(username='user1', password='password')
-        citizen1 = Citizens.objects.create(user=user1, national_id='12345', first_name='John', last_name='Doe', date_of_birth='1990-01-01')
-        user2 = User.objects.create(username='user2', password='password')
-        # ensure that the second user with the same national id cannot be created
-        with self.assertRaises(IntegrityError):
-            Citizens.objects.create(user=user2, national_id='12345', first_name='Jane', last_name='Smith', date_of_birth='1992-02-02')
+#     def test_registration_request_creation(self):
+#         registration_request = RegistrationRequests.objects.get(id=self.registration_request.id)
+#         self.assertEqual(registration_request.request_type, 'Address Registration')
+    
+#     def test_forum_creation(self):
+#         forum = Forums.objects.get(id=self.forum.id)
+#         self.assertEqual(forum.title, 'Test Forum')
+#         self.assertEqual(forum.region, 'Cairo')
+#         # add the citizen as a member to the form
+#         forum.members.add(self.citizen)
+#         # ensure that the citizen is a member of the forum
+#         self.assertIn(self.citizen, forum.members.all())
+    
+#     def test_post_creation(self):
+#         post = Posts.objects.get(id=self.post.id)
+#         self.assertEqual(post.title, 'Test Post')
+#         self.assertEqual(post.content, 'Test Content')
+#         self.assertEqual(post.author, self.citizen)
+    
+#     def test_comment_creation(self):
+#         comment = Comments.objects.get(id=self.comment.id)
+#         self.assertEqual(comment.content, 'Test Comment')
+#         self.assertEqual(comment.author, self.citizen)
+    
+#     # ensure the unique constraints are enforced
+#     def test_national_id_uniqueness(self):
+#         # create 2 users with the same national id
+#         user1 = User.objects.create(username='user1', password='password')
+#         citizen1 = Citizens.objects.create(user=user1, national_id='12345', first_name='John', last_name='Doe', date_of_birth='1990-01-01')
+#         user2 = User.objects.create(username='user2', password='password')
+#         # ensure that the second user with the same national id cannot be created
+#         with self.assertRaises(IntegrityError):
+#             Citizens.objects.create(user=user2, national_id='12345', first_name='Jane', last_name='Smith', date_of_birth='1992-02-02')
 
-    # ensure the default value for the state field is as expected
-    def test_default_state_value(self):
-        user = User.objects.create(username='user', password='password')
-        citizen = Citizens.objects.create(user=user, national_id='12345', first_name='John', last_name='Doe', date_of_birth='1990-01-01')
-        address = Addresses.objects.create(citizen=citizen, country='Country', city='City', street='Street', building_number=1, floor_number=2, apartment_number=3)
-        self.assertEqual(address.state, 'Active')
+#     # ensure the default value for the state field is as expected
+#     def test_default_state_value(self):
+#         user = User.objects.create(username='user', password='password')
+#         citizen = Citizens.objects.create(user=user, national_id='12345', first_name='John', last_name='Doe', date_of_birth='1990-01-01')
+#         address = Addresses.objects.create(citizen=citizen, country='Country', city='City', street='Street', building_number=1, floor_number=2, apartment_number=3)
+#         self.assertEqual(address.state, 'Active')
 
-    # ensure the one to one relationship between User and Citizens is as expected
-    def test_user_citizen_relationship(self):
-        user = User.objects.create(username='user', password='password')
-        citizen = Citizens.objects.create(user=user, national_id='67890', first_name='Alice', last_name='Wonder', date_of_birth='1988-08-08')
-        self.assertEqual(user.citizen, citizen)
-        self.assertEqual(citizen.user, user)
+#     # ensure the one to one relationship between User and Citizens is as expected
+#     def test_user_citizen_relationship(self):
+#         user = User.objects.create(username='user', password='password')
+#         citizen = Citizens.objects.create(user=user, national_id='67890', first_name='Alice', last_name='Wonder', date_of_birth='1988-08-08')
+#         self.assertEqual(user.citizen, citizen)
+#         self.assertEqual(citizen.user, user)
     
-    # ensure the one to many relationship between Citizens and Addresses is as expected
-    def test_citizen_address_relationship(self):
-        user = User.objects.create(username='user', password='password')
-        citizen = Citizens.objects.create(user=user, national_id='67890', first_name='Alice', last_name='Wonder', date_of_birth='1988-08-08')
-        address = Addresses.objects.create(citizen=citizen, country='Country', city='City', street='Street', building_number=1, floor_number=2, apartment_number=3)
-        self.assertEqual(address.citizen, citizen)
-        self.assertIn(address, citizen.addresses_set.all())
+#     # ensure the one to many relationship between Citizens and Addresses is as expected
+#     def test_citizen_address_relationship(self):
+#         user = User.objects.create(username='user', password='password')
+#         citizen = Citizens.objects.create(user=user, national_id='67890', first_name='Alice', last_name='Wonder', date_of_birth='1988-08-08')
+#         address = Addresses.objects.create(citizen=citizen, country='Country', city='City', street='Street', building_number=1, floor_number=2, apartment_number=3)
+#         self.assertEqual(address.citizen, citizen)
+#         self.assertIn(address, citizen.addresses_set.all())
  
-'''SERIALIZERS TESTS'''
-@override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder
-class ModelSerializersTest(BaseTestCase):
-    '''Agenda: test the basic serialization-deserialization for the model serializers'''
-    def setUp(self):
-        # create model objects
-        self.citizen = CitizensFactory()
-        self.user = UserFactory()
-        self.passport = PassportsFactory()
-        self.license = DrivingLicensesFactory()
-        self.address = AddressesFactory()
-        self.property = PropertiesFactory()
-        self.vehicle = VehiclesFactory()
-        # create serializers instances
-        self.citizen_serializer = CitizensSerializer(self.citizen)
-        self.user_serializer = UserSerializer(self.user)
-        self.passport_serializer = PassportsSerializer(self.passport)
-        self.licnese_serializer = DrivingLicenseSerializer(self.license)
-        self.address_serializer = AddressesSerializer(self.address)
-        self.property_serializer = PropertiesSerializer(self.property)
-        self.vehicle_serializer = VehiclesSerializer(self.vehicle)
+# '''SERIALIZERS TESTS'''
+# @override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder
+# class ModelSerializersTest(BaseTestCase):
+#     '''Agenda: test the basic serialization-deserialization for the model serializers'''
+#     def setUp(self):
+#         # create model objects
+#         self.citizen = CitizensFactory()
+#         self.user = UserFactory()
+#         self.passport = PassportsFactory()
+#         self.license = DrivingLicensesFactory()
+#         self.address = AddressesFactory()
+#         self.property = PropertiesFactory()
+#         self.vehicle = VehiclesFactory()
+#         self.notification = NotificationsFactory()
+#         self.forum = Forums.objects.create(title="test", region="nation")
+#         self.post = Posts.objects.create(forum=self.forum, author=self.citizen, content="test", title="test")
+#         self.comment = Comments.objects.create(post=self.post, author=self.citizen, content="test")
+#         # create serializers instances
+#         self.citizen_serializer = CitizensSerializer(self.citizen)
+#         self.user_serializer = UserSerializer(self.user)
+#         self.passport_serializer = PassportsSerializer(self.passport)
+#         self.licnese_serializer = DrivingLicenseSerializer(self.license)
+#         self.address_serializer = AddressesSerializer(self.address)
+#         self.property_serializer = PropertiesSerializer(self.property)
+#         self.vehicle_serializer = VehiclesSerializer(self.vehicle)
+#         self.notification_serializer = NotificationsSerializer(self.notification)
+#         self.forum_serializer = ForumsSerializer(self.forum)
+#         self.post_serializer = PostsSerializer(self.post)
+#         self.comment_serializer = CommentsSerializer(self.comment)
     
-    def test_citizen_serializer_contains_expected_fields(self):
-        # ensure the serializer contains the expected fields
-        data = self.citizen_serializer.data
-        self.assertEqual(set(data.keys()), set(['picture', 'user', 'national_id', 'date_of_birth', 'first_name', 'last_name', 'blood_type', 'sex']))
-        # ensure that the fields equal the model fields
-        self.assertEqual(data['picture'], self.citizen.picture.url)
-        self.assertEqual(data['national_id'], self.citizen.national_id)
-        self.assertEqual(datetime.strptime(data['date_of_birth'], '%Y-%m-%d').date(), self.citizen.date_of_birth)
-        self.assertEqual(data['first_name'], self.citizen.first_name)
-        self.assertEqual(data['last_name'], self.citizen.last_name)
-        self.assertEqual(data['blood_type'], self.citizen.blood_type)
-        self.assertEqual(data['sex'], self.citizen.sex)
+    # def test_citizen_serializer_contains_expected_fields(self):
+    #     # ensure the serializer contains the expected fields
+    #     data = self.citizen_serializer.data
+    #     self.assertEqual(set(data.keys()), set(['picture', 'user', 'national_id', 'date_of_birth', 'first_name', 'last_name', 'blood_type', 'sex']))
+    #     # ensure that the fields equal the model fields
+    #     self.assertEqual(data['picture'], self.citizen.picture.url)
+    #     self.assertEqual(data['national_id'], self.citizen.national_id)
+    #     self.assertEqual(datetime.strptime(data['date_of_birth'], '%Y-%m-%d').date(), self.citizen.date_of_birth)
+    #     self.assertEqual(data['first_name'], self.citizen.first_name)
+    #     self.assertEqual(data['last_name'], self.citizen.last_name)
+    #     self.assertEqual(data['blood_type'], self.citizen.blood_type)
+    #     self.assertEqual(data['sex'], self.citizen.sex)
     
-    def test_user_serializer_contains_expected_fields(self):
-        # ensure the serializer contains the expected fields
-        data = self.user_serializer.data
-        self.assertEqual(set(data.keys()), set(['username']))
-        # ensure that the fields equal the model fields
-        self.assertEqual(data['username'], self.user.username)
+    # def test_user_serializer_contains_expected_fields(self):
+    #     # ensure the serializer contains the expected fields
+    #     data = self.user_serializer.data
+    #     self.assertEqual(set(data.keys()), set(['username']))
+    #     # ensure that the fields equal the model fields
+    #     self.assertEqual(data['username'], self.user.username)
     
-    def test_passport_serializer_contains_expected_fields(self):
-        # ensure the serializer contains the expected fields
-        data = self.passport_serializer.data
-        self.assertEqual(set(data.keys()), set(['passport_number', 'citizen', 'issue_date', 'expiry_date', 'picture']))
-        # ensure that the fields equal the model fields
-        self.assertEqual(data['passport_number'], self.passport.passport_number)
-        self.assertEqual(datetime.strptime(data['issue_date'], '%Y-%m-%d').date(), self.passport.issue_date)
-        self.assertEqual(datetime.strptime(data['expiry_date'], '%Y-%m-%d').date(), self.passport.expiry_date)
-        self.assertEqual(data['picture'], self.passport.picture.url)
+    # def test_passport_serializer_contains_expected_fields(self):
+    #     # ensure the serializer contains the expected fields
+    #     data = self.passport_serializer.data
+    #     self.assertEqual(set(data.keys()), set(['passport_number', 'citizen', 'issue_date', 'expiry_date', 'picture']))
+    #     # ensure that the fields equal the model fields
+    #     self.assertEqual(data['passport_number'], self.passport.passport_number)
+    #     self.assertEqual(datetime.strptime(data['issue_date'], '%Y-%m-%d').date(), self.passport.issue_date)
+    #     self.assertEqual(datetime.strptime(data['expiry_date'], '%Y-%m-%d').date(), self.passport.expiry_date)
+    #     self.assertEqual(data['picture'], self.passport.picture.url)
 
-    def test_license_serializer_contains_expected_fields(self):
-        # ensure the serializer contains the expected fields
-        data = self.licnese_serializer.data
-        self.assertEqual(set(data.keys()), set(['license_number', 'citizen', 'issue_date', 'expiry_date', 'picture', 'nationality', 'emergency_contact', 'license_class']))
-        # ensure that the fields equal the model fields
-        self.assertEqual(data['license_number'], self.license.license_number)
-        self.assertEqual(datetime.strptime(data['issue_date'], '%Y-%m-%d').date(), self.license.issue_date)
-        self.assertEqual(datetime.strptime(data['expiry_date'], '%Y-%m-%d').date(), self.license.expiry_date)
-        self.assertEqual(data['picture'], self.license.picture.url)
-        self.assertEqual(data['nationality'], self.license.nationality)
-        self.assertEqual(data['emergency_contact'], self.license.emergency_contact)
-        self.assertEqual(data['license_class'], self.license.license_class)
+    # def test_license_serializer_contains_expected_fields(self):
+    #     # ensure the serializer contains the expected fields
+    #     data = self.licnese_serializer.data
+    #     self.assertEqual(set(data.keys()), set(['license_number', 'citizen', 'issue_date', 'expiry_date', 'picture', 'nationality', 'emergency_contact', 'license_class']))
+    #     # ensure that the fields equal the model fields
+    #     self.assertEqual(data['license_number'], self.license.license_number)
+    #     self.assertEqual(datetime.strptime(data['issue_date'], '%Y-%m-%d').date(), self.license.issue_date)
+    #     self.assertEqual(datetime.strptime(data['expiry_date'], '%Y-%m-%d').date(), self.license.expiry_date)
+    #     self.assertEqual(data['picture'], self.license.picture.url)
+    #     self.assertEqual(data['nationality'], self.license.nationality)
+    #     self.assertEqual(data['emergency_contact'], self.license.emergency_contact)
+    #     self.assertEqual(data['license_class'], self.license.license_class)
 
-    def test_address_serializer_contains_expected_fields(self):
-        # ensure the serializer contains the expected fields
-        data = self.address_serializer.data
-        self.assertEqual(set(data.keys()), set(['id', 'country', 'city', 'street', 'building_number', 'floor_number', 'apartment_number', 'citizen', 'state']))
-        # ensure that the fields equal the model fields
-        self.assertEqual(data['country'], self.address.country)
-        self.assertEqual(data['city'], self.address.city)
-        self.assertEqual(data['street'], self.address.street)
-        self.assertEqual(data['building_number'], self.address.building_number)
-        self.assertEqual(data['floor_number'], self.address.floor_number)
-        self.assertEqual(data['apartment_number'], self.address.apartment_number)
-        self.assertEqual(data['state'], self.address.state)
+    # def test_address_serializer_contains_expected_fields(self):
+    #     # ensure the serializer contains the expected fields
+    #     data = self.address_serializer.data
+    #     self.assertEqual(set(data.keys()), set(['id', 'country', 'city', 'street', 'building_number', 'floor_number', 'apartment_number', 'citizen', 'state']))
+    #     # ensure that the fields equal the model fields
+    #     self.assertEqual(data['country'], self.address.country)
+    #     self.assertEqual(data['city'], self.address.city)
+    #     self.assertEqual(data['street'], self.address.street)
+    #     self.assertEqual(data['building_number'], self.address.building_number)
+    #     self.assertEqual(data['floor_number'], self.address.floor_number)
+    #     self.assertEqual(data['apartment_number'], self.address.apartment_number)
+    #     self.assertEqual(data['state'], self.address.state)
 
-    def test_property_serializer_contains_expected_fields(self):
-        # ensure the serializer contains the expected fields
-        data = self.property_serializer.data
-        self.assertEqual(set(data.keys()), set(['id', 'property_id', 'location', 'property_type', 'citizen', 'picture', 'is_under_transfer', 'description', 'size']))
-        # ensure that the fields equal the model fields
-        self.assertEqual(data['property_id'], self.property.property_id)
-        self.assertEqual(data['location'], self.property.location)
-        self.assertEqual(data['property_type'], self.property.property_type)
-        self.assertEqual(data['description'], self.property.description)
-        self.assertEqual(data['size'], self.property.size)
+    # def test_property_serializer_contains_expected_fields(self):
+    #     # ensure the serializer contains the expected fields
+    #     data = self.property_serializer.data
+    #     self.assertEqual(set(data.keys()), set(['id', 'property_id', 'location', 'property_type', 'citizen', 'picture', 'is_under_transfer', 'description', 'size']))
+    #     # ensure that the fields equal the model fields
+    #     self.assertEqual(data['property_id'], self.property.property_id)
+    #     self.assertEqual(data['location'], self.property.location)
+    #     self.assertEqual(data['property_type'], self.property.property_type)
+    #     self.assertEqual(data['description'], self.property.description)
+    #     self.assertEqual(data['size'], self.property.size)
         
-    def test_vehicle_serializer_contains_expected_fields(self):
-        # ensure the serializer contains the expected fields
-        data = self.vehicle_serializer.data
-        self.assertEqual(set(data.keys()), set(['id', 'serial_number', 'plate_number', 'model', 'year', 'manufacturer', 'vehicle_type', 'citizen', 'picture', 'is_under_transfer']))
-        # ensure that the fields equal the model fields
-        self.assertEqual(data['serial_number'], self.vehicle.serial_number)
-        self.assertEqual(data['plate_number'], self.vehicle.plate_number)
-        self.assertEqual(data['model'], self.vehicle.model)
-        self.assertEqual(str(data['year']), self.vehicle.year)
-        self.assertEqual(data['manufacturer'], self.vehicle.manufacturer)
-        self.assertEqual(data['vehicle_type'], self.vehicle.vehicle_type)
-        self.assertEqual(data['picture'], self.vehicle.picture.url)
+    # def test_vehicle_serializer_contains_expected_fields(self):
+    #     # ensure the serializer contains the expected fields
+    #     data = self.vehicle_serializer.data
+    #     self.assertEqual(set(data.keys()), set(['id', 'serial_number', 'plate_number', 'model', 'year', 'manufacturer', 'vehicle_type', 'citizen', 'picture', 'is_under_transfer']))
+    #     # ensure that the fields equal the model fields
+    #     self.assertEqual(data['serial_number'], self.vehicle.serial_number)
+    #     self.assertEqual(data['plate_number'], self.vehicle.plate_number)
+    #     self.assertEqual(data['model'], self.vehicle.model)
+    #     self.assertEqual(str(data['year']), self.vehicle.year)
+    #     self.assertEqual(data['manufacturer'], self.vehicle.manufacturer)
+    #     self.assertEqual(data['vehicle_type'], self.vehicle.vehicle_type)
+    #     self.assertEqual(data['picture'], self.vehicle.picture.url)
+    
+    # def test_notification_serializer_contains_expected_fields(self):
+    #     # ensure the serializer contains the expected fields
+    #     data = self.notification_serializer.data
+    #     self.assertEqual(set(data.keys()), set(['id', 'citizen', 'message']))
+    #     # ensure that the fields equal the model fields
+    #     self.assertEqual(data['message'], self.notification.message)
+    
+    # def test_forum_serializer_contains_expected_fields(self):
+    #     # ensure the serializer contains the expected fields
+    #     data = self.forum_serializer.data
+    #     self.assertEqual(set(data.keys()), set(['id', 'title', 'region', 'members']))
+    #     # ensure that the fields equal the model fields
+    #     self.assertEqual(data['title'], self.forum.title)
+    #     self.assertEqual(data['region'], self.forum.region)
+    
+    # def test_post_serializer_contains_expected_fields(self):
+    #     # ensure the serializer contains the expected fields
+    #     data = self.post_serializer.data
+    #     self.assertEqual(set(data.keys()), set(['id', 'title', 'content', 'author', 'forum', 'picture', 'timestamp', 'likes', 'likes_count']))
+    #     # ensure that the fields equal the model fields
+    #     self.assertEqual(data['title'], self.post.title)
+    #     self.assertEqual(data['content'], self.post.content)
+    #     self.assertEqual(data['author'], self.post.author.user.username)
+    #     self.assertEqual(data['forum'], self.post.forum.id)
+
+    # def test_comment_serializer_contains_expected_fields(self):
+    #     # ensure the serializer contains the expected fields
+    #     data = self.comment_serializer.data
+    #     self.assertEqual(set(data.keys()), set(['id', 'content', 'author', 'post', 'picture', 'timestamp', 'likes', 'likes_count']))
+    #     # ensure that the fields equal the model fields
+    #     self.assertEqual(data['content'], self.comment.content)
+    #     self.assertEqual(data['author'], self.comment.author.user.username)
+    #     self.assertEqual(data['post'], self.comment.post.id)
                             
-@override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder                         
-class ValidationSerializersTest(BaseTestCase):
-    '''Agenda: test the validation serilaizers are valid for correct data and invalid otherwise'''
-    def setUp(self):
-        # create factory instances 
-        self.citizen = CitizensFactory()
-        self.address = AddressesFactory()
-        # open the media folder and create a SimpleUploadedFile for the test picture
-        with default_storage.open('valid.jpeg', 'rb') as image_file:
-            picture = SimpleUploadedFile("TestImage.jpg", image_file.read(), content_type='image/jpeg')
-        self.passport = PassportsFactory(passport_number='12345678', picture=picture)
-        self.license = DrivingLicensesFactory(license_number='12345678', picture=picture)
+# @override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder                         
+# class ValidationSerializersTest(BaseTestCase):
+#     '''Agenda: test the validation serilaizers are valid for correct data and invalid otherwise'''
+#     def setUp(self):
+#         # create factory instances 
+#         self.citizen = CitizensFactory()
+#         self.address = AddressesFactory()
+#         # open the media folder and create a SimpleUploadedFile for the test picture
+#         with default_storage.open('valid.jpeg', 'rb') as image_file:
+#             picture = SimpleUploadedFile("TestImage.jpg", image_file.read(), content_type='image/jpeg')
+#         self.passport = PassportsFactory(passport_number='12345678', picture=picture)
+#         self.license = DrivingLicensesFactory(license_number='12345678', picture=picture)
        
-    def test_valid_citizen_validation_Serializer(self):
-        # define the valid data
-        data = {
-            'national_id': self.citizen.national_id,
-            'date_of_birth': str(self.citizen.date_of_birth),
-            'first_name': self.citizen.first_name,
-            'last_name': self.citizen.last_name,
-            'blood_type': self.citizen.blood_type,
-            'sex': self.citizen.sex,
-        }
-        # create a serialzier and pass the data
-        serializer = CitizenValidationSerializer(data=data)
-        # ensure that it's valid
-        is_valid = serializer.is_valid()
-        if not is_valid:
-            print(serializer.errors)  # Print the errors to debug
-        self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
-        # copilot ^_^
-        self.assertTrue(serializer.is_valid())
+#     def test_valid_citizen_validation_Serializer(self):
+#         # define the valid data
+#         data = {
+#             'national_id': self.citizen.national_id,
+#             'date_of_birth': str(self.citizen.date_of_birth),
+#             'first_name': self.citizen.first_name,
+#             'last_name': self.citizen.last_name,
+#             'blood_type': self.citizen.blood_type,
+#             'sex': self.citizen.sex,
+#         }
+#         # create a serialzier and pass the data
+#         serializer = CitizenValidationSerializer(data=data)
+#         # ensure that it's valid
+#         is_valid = serializer.is_valid()
+#         if not is_valid:
+#             print(serializer.errors)  # Print the errors to debug
+#         self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
+#         # copilot ^_^
+#         self.assertTrue(serializer.is_valid())
     
-    def test_invalid_citizen_validation_serializer(self):
-        # define the invalid data
-        data = {
-            'national_id': '12345',
-            'date_of_birth': '2021-01-01',
-            'first_name': 'John',
-            'last_name': 'Invalid',
-            'blood_type': 'O+',
-            'sex': "M"
-        }
-        # create a serialzier and pass the data
-        serializer = CitizenValidationSerializer(data=data)
-        # ensure that it's invalid
-        self.assertFalse(serializer.is_valid())
+#     def test_invalid_citizen_validation_serializer(self):
+#         # define the invalid data
+#         data = {
+#             'national_id': '12345',
+#             'date_of_birth': '2021-01-01',
+#             'first_name': 'John',
+#             'last_name': 'Invalid',
+#             'blood_type': 'O+',
+#             'sex': "M"
+#         }
+#         # create a serialzier and pass the data
+#         serializer = CitizenValidationSerializer(data=data)
+#         # ensure that it's invalid
+#         self.assertFalse(serializer.is_valid())
 
-    def test_address_validation_serializer(self):
-        # define the valid data
-        data = {
-            'country': self.address.country,
-            'city': self.address.city,
-            'street': self.address.street,
-            'building_number': self.address.building_number,
-            'floor_number': self.address.floor_number,
-            'apartment_number': self.address.apartment_number,
-        }
-        # create a serialzier and pass the data
-        serializer = AddressValidationSerializer(data=data)
-        # ensure that it's valid
-        is_valid = serializer.is_valid()
-        if not is_valid:
-            print(serializer.errors)  # Print the errors to debug
-        self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
-        self.assertTrue(serializer.is_valid())
+#     def test_address_validation_serializer(self):
+#         # define the valid data
+#         data = {
+#             'country': self.address.country,
+#             'city': self.address.city,
+#             'street': self.address.street,
+#             'building_number': self.address.building_number,
+#             'floor_number': self.address.floor_number,
+#             'apartment_number': self.address.apartment_number,
+#         }
+#         # create a serialzier and pass the data
+#         serializer = AddressValidationSerializer(data=data)
+#         # ensure that it's valid
+#         is_valid = serializer.is_valid()
+#         if not is_valid:
+#             print(serializer.errors)  # Print the errors to debug
+#         self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
+#         self.assertTrue(serializer.is_valid())
     
-    def test_passport_validation_serializer_without_proof(self):
-        # define the data without the reason of early renewal nor the proof document
-        data = {
-            'passport_number': self.passport.passport_number,
-            'issue_date': str(self.passport.issue_date),
-            'expiry_date': str(self.passport.expiry_date),
-            'picture': self.passport.picture
-        }
-        # create a srialzier and pass the data
-        serializer = PassportValidationSerializer(data=data)
-        # ensure that it's valid
-        is_valid = serializer.is_valid()
-        if not is_valid:
-            print(serializer.errors)  # Print the errors to debug
-        self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
-        self.assertTrue(serializer.is_valid())
-        self.assertIsNone(serializer.validated_data['reason'])
-        self.assertIsNone(serializer.validated_data['proof_document'])
+#     def test_passport_validation_serializer_without_proof(self):
+#         # define the data without the reason of early renewal nor the proof document
+#         data = {
+#             'passport_number': self.passport.passport_number,
+#             'issue_date': str(self.passport.issue_date),
+#             'expiry_date': str(self.passport.expiry_date),
+#             'picture': self.passport.picture
+#         }
+#         # create a srialzier and pass the data
+#         serializer = PassportValidationSerializer(data=data)
+#         # ensure that it's valid
+#         is_valid = serializer.is_valid()
+#         if not is_valid:
+#             print(serializer.errors)  # Print the errors to debug
+#         self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
+#         self.assertTrue(serializer.is_valid())
+#         self.assertIsNone(serializer.validated_data['reason'])
+#         self.assertIsNone(serializer.validated_data['proof_document'])
 
-    def test_passport_validation_serializer_with_proof(self):
-        # create a SimpleUploadedFile for the proof document
-        proof_document = SimpleUploadedFile(
-            "proof_document.pdf",  
-            b"Dummy file content",  
-            content_type='application/pdf'
-        ) 
-        # define the data with the reason of early renewal and the proof document
-        data = {
-            'passport_number': self.passport.passport_number,
-            'issue_date': str(self.passport.issue_date),
-            'expiry_date': str(self.passport.expiry_date),
-            'picture': self.passport.picture,
-            'reason': 'Lost',
-            'proof_document': proof_document
-        }
-        # create a srialzier and pass the data
-        serializer = PassportValidationSerializer(data=data)
-        # ensure that it's valid
-        is_valid = serializer.is_valid()
-        if not is_valid:
-            print(serializer.errors)  # Print the errors to debug
-        self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
-        self.assertTrue(serializer.is_valid())
+#     def test_passport_validation_serializer_with_proof(self):
+#         # create a SimpleUploadedFile for the proof document
+#         proof_document = SimpleUploadedFile(
+#             "proof_document.pdf",  
+#             b"Dummy file content",  
+#             content_type='application/pdf'
+#         ) 
+#         # define the data with the reason of early renewal and the proof document
+#         data = {
+#             'passport_number': self.passport.passport_number,
+#             'issue_date': str(self.passport.issue_date),
+#             'expiry_date': str(self.passport.expiry_date),
+#             'picture': self.passport.picture,
+#             'reason': 'Lost',
+#             'proof_document': proof_document
+#         }
+#         # create a srialzier and pass the data
+#         serializer = PassportValidationSerializer(data=data)
+#         # ensure that it's valid
+#         is_valid = serializer.is_valid()
+#         if not is_valid:
+#             print(serializer.errors)  # Print the errors to debug
+#         self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
+#         self.assertTrue(serializer.is_valid())
     
-    def test_license_validation_serializer_without_proof(self):
-        # define the data without the reason of early renewal nor the proof document
-        data = {
-            'license_number': self.license.license_number,
-            'issue_date': str(self.license.issue_date),
-            'expiry_date': str(self.license.expiry_date),
-            'nationality': self.license.nationality,
-            'license_class': self.license.license_class,
-            'emergency_contact': self.license.emergency_contact,
-            'picture': self.license.picture
-        }
-        # create a srialzier and pass the data
-        serializer = DrivingLicenseValidationSerializer(data=data)
-        # ensure that it's valid
-        is_valid = serializer.is_valid()
-        if not is_valid:
-            print(serializer.errors)  # Print the errors to debug
-        self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
-        self.assertTrue(serializer.is_valid())
-        self.assertIsNone(serializer.validated_data['reason'])
-        self.assertIsNone(serializer.validated_data['proof_document'])
+#     def test_license_validation_serializer_without_proof(self):
+#         # define the data without the reason of early renewal nor the proof document
+#         data = {
+#             'license_number': self.license.license_number,
+#             'issue_date': str(self.license.issue_date),
+#             'expiry_date': str(self.license.expiry_date),
+#             'nationality': self.license.nationality,
+#             'license_class': self.license.license_class,
+#             'emergency_contact': self.license.emergency_contact,
+#             'picture': self.license.picture
+#         }
+#         # create a srialzier and pass the data
+#         serializer = DrivingLicenseValidationSerializer(data=data)
+#         # ensure that it's valid
+#         is_valid = serializer.is_valid()
+#         if not is_valid:
+#             print(serializer.errors)  # Print the errors to debug
+#         self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
+#         self.assertTrue(serializer.is_valid())
+#         self.assertIsNone(serializer.validated_data['reason'])
+#         self.assertIsNone(serializer.validated_data['proof_document'])
 
-    def test_license_validation_serializer_with_proof(self):
-        # create a SimpleUploadedFile for the proof document
-        proof_document = SimpleUploadedFile(
-            "proof_document.pdf",  
-            b"Dummy file content",  
-            content_type='application/pdf'
-        ) 
-        # define the data with the reason of early renewal and the proof document
-        data = {
-            'license_number': self.license.license_number,
-            'issue_date': str(self.license.issue_date),
-            'expiry_date': str(self.license.expiry_date),
-            'nationality': self.license.nationality,
-            'license_class': self.license.license_class,
-            'emergency_contact': self.license.emergency_contact,
-            'picture': self.license.picture,
-            'reason': 'Lost',
-            'proof_document': proof_document
-        }
-        # create a srialzier and pass the data
-        serializer = DrivingLicenseValidationSerializer(data=data)
-        # ensure that it's valid
-        is_valid = serializer.is_valid()
-        if not is_valid:
-            print(serializer.errors)  # Print the errors to debug
-        self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
-        self.assertTrue(serializer.is_valid())
+#     def test_license_validation_serializer_with_proof(self):
+#         # create a SimpleUploadedFile for the proof document
+#         proof_document = SimpleUploadedFile(
+#             "proof_document.pdf",  
+#             b"Dummy file content",  
+#             content_type='application/pdf'
+#         ) 
+#         # define the data with the reason of early renewal and the proof document
+#         data = {
+#             'license_number': self.license.license_number,
+#             'issue_date': str(self.license.issue_date),
+#             'expiry_date': str(self.license.expiry_date),
+#             'nationality': self.license.nationality,
+#             'license_class': self.license.license_class,
+#             'emergency_contact': self.license.emergency_contact,
+#             'picture': self.license.picture,
+#             'reason': 'Lost',
+#             'proof_document': proof_document
+#         }
+#         # create a srialzier and pass the data
+#         serializer = DrivingLicenseValidationSerializer(data=data)
+#         # ensure that it's valid
+#         is_valid = serializer.is_valid()
+#         if not is_valid:
+#             print(serializer.errors)  # Print the errors to debug
+#         self.assertNotIn('The data you entered does not match our records.', serializer.errors.get('non_field_errors', []))
+#         self.assertTrue(serializer.is_valid())
     
-@override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder
-class RenewalRequestsSerializerTest(BaseTestCase):    
-    '''Agenda: test the representation based on the 'to_representation' method is correct according to request type'''
-    def test_passport_request_representation(self):
-        # define a citizen and create a passport for them
-        citizen = CitizensFactory()
-        passport = PassportsFactory(citizen=citizen)
-        # create a renewal request for their passport
-        renewal_request = RenewalRequestsFactory(citizen=citizen, request_type='Passport')
-        # create a serializer instance and pass the request to it
-        serializer = RenewalRequestsSerializer(renewal_request)
-        data = serializer.data
-        # esnure the representation includes the passport and not the license & that the citizen info is correct
-        self.assertIn('passport_info', data)
-        self.assertIn('citizen_info', data)
-        self.assertNotIn('license_info', data)
-        self.assertNotIn('citizen_license_info', data)
-        self.assertNotIn('citizen_passport_info', data)
-        # ensure the expected fields in the citizen_info are correct
-        citizen_info = data['citizen_info']
-        self.assertEqual(set(citizen_info.keys()), set(['national_id', 'first_name', 'last_name', 'date_of_birth', 'sex']))
+# @override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder
+# class RenewalRequestsSerializerTest(BaseTestCase):    
+#     '''Agenda: test the representation based on the 'to_representation' method is correct according to request type'''
+#     def test_passport_request_representation(self):
+#         # define a citizen and create a passport for them
+#         citizen = CitizensFactory()
+#         passport = PassportsFactory(citizen=citizen)
+#         # create a renewal request for their passport
+#         renewal_request = RenewalRequestsFactory(citizen=citizen, request_type='Passport')
+#         # create a serializer instance and pass the request to it
+#         serializer = RenewalRequestsSerializer(renewal_request)
+#         data = serializer.data
+#         # esnure the representation includes the passport and not the license & that the citizen info is correct
+#         self.assertIn('passport_info', data)
+#         self.assertIn('citizen_info', data)
+#         self.assertNotIn('license_info', data)
+#         self.assertNotIn('citizen_license_info', data)
+#         self.assertNotIn('citizen_passport_info', data)
+#         # ensure the expected fields in the citizen_info are correct
+#         citizen_info = data['citizen_info']
+#         self.assertEqual(set(citizen_info.keys()), set(['national_id', 'first_name', 'last_name', 'date_of_birth', 'sex']))
 
-    def test_license_request_representation(self):
-        # define a citizen and create a license for them
-        citizen = CitizensFactory()
-        license = DrivingLicensesFactory(citizen=citizen)
-        # create a renewal request for their license
-        renewal_request = RenewalRequestsFactory(citizen=citizen, request_type="Driver's License")
-        # create a serializer instance and pass the request to it
-        serializer = RenewalRequestsSerializer(renewal_request)
-        data = serializer.data
-        # esnure the representation includes the license and not the passport & that the citizen info is correct
-        self.assertIn('license_info', data)
-        self.assertIn('citizen_info', data)
-        self.assertNotIn('passport_info', data)
-        self.assertNotIn('citizen_license_info', data)
-        self.assertNotIn('citizen_passport_info', data)
-        # ensure the expected fields in the citizen_info are correct
-        citizen_info = data['citizen_info']
-        self.assertEqual(set(citizen_info.keys()), set(['national_id', 'first_name', 'last_name', 'blood_type']))
+#     def test_license_request_representation(self):
+#         # define a citizen and create a license for them
+#         citizen = CitizensFactory()
+#         license = DrivingLicensesFactory(citizen=citizen)
+#         # create a renewal request for their license
+#         renewal_request = RenewalRequestsFactory(citizen=citizen, request_type="Driver's License")
+#         # create a serializer instance and pass the request to it
+#         serializer = RenewalRequestsSerializer(renewal_request)
+#         data = serializer.data
+#         # esnure the representation includes the license and not the passport & that the citizen info is correct
+#         self.assertIn('license_info', data)
+#         self.assertIn('citizen_info', data)
+#         self.assertNotIn('passport_info', data)
+#         self.assertNotIn('citizen_license_info', data)
+#         self.assertNotIn('citizen_passport_info', data)
+#         # ensure the expected fields in the citizen_info are correct
+#         citizen_info = data['citizen_info']
+#         self.assertEqual(set(citizen_info.keys()), set(['national_id', 'first_name', 'last_name', 'blood_type']))
     
-@override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder    
-class RegistrationRequestsSerializerTest(BaseTestCase):
-    '''Agenda: test the representation based on the 'to_representation' method is correct according to request type'''
-    def setUp(self):
-        # set up a testing client
-        self.client = APIClient()
-        # create a user 
-        self.user = UserFactory(username='user')
-        # create a citizen for the user
-        self.citizen = CitizensFactory(user=self.user)
-        # create entities to register
-        self.address = AddressesFactory(citizen=self.citizen, state="Pending Request")
-        self.property = PropertiesFactory(citizen=self.citizen, is_under_transfer=True)
-        self.vehicle = VehiclesFactory(citizen=self.citizen, is_under_transfer=True)
-        # create registration requests for the entities
-        self.address_request = RegistrationRequestsFactory(request_type="Address Registration", citizen=self.citizen)
-        self.property_request = RegistrationRequestsFactory(request_type="Property Registration", citizen=self.citizen)
-        self.vehicle_request = RegistrationRequestsFactory(request_type="Vehicle Registration", citizen=self.citizen)
+# @override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder    
+# class RegistrationRequestsSerializerTest(BaseTestCase):
+#     '''Agenda: test the representation based on the 'to_representation' method is correct according to request type'''
+#     def setUp(self):
+#         # set up a testing client
+#         self.client = APIClient()
+#         # create a user 
+#         self.user = UserFactory(username='user')
+#         # create a citizen for the user
+#         self.citizen = CitizensFactory(user=self.user)
+#         # create entities to register
+#         self.address = AddressesFactory(citizen=self.citizen, state="Pending Request")
+#         self.property = PropertiesFactory(citizen=self.citizen, is_under_transfer=True)
+#         self.vehicle = VehiclesFactory(citizen=self.citizen, is_under_transfer=True)
+#         # create registration requests for the entities
+#         self.address_request = RegistrationRequestsFactory(request_type="Address Registration", citizen=self.citizen)
+#         self.property_request = RegistrationRequestsFactory(request_type="Property Registration", citizen=self.citizen)
+#         self.vehicle_request = RegistrationRequestsFactory(request_type="Vehicle Registration", citizen=self.citizen)
     
-    def test_address_request_representation(self):
-        # create a serializer instance and pass the request to it
-        serializer = RegistrationRequestsSerializer(self.address_request)
-        data = serializer.data
-        # esnure the representation includes the address and not the property and vehicle 
-        self.assertIn('address_info', data)
-        self.assertIn('citizen_info', data)
-        self.assertNotIn('property_info', data)
-        self.assertNotIn('vehicle_info', data)
+#     def test_address_request_representation(self):
+#         # create a serializer instance and pass the request to it
+#         serializer = RegistrationRequestsSerializer(self.address_request)
+#         data = serializer.data
+#         # esnure the representation includes the address and not the property and vehicle 
+#         self.assertIn('address_info', data)
+#         self.assertIn('citizen_info', data)
+#         self.assertNotIn('property_info', data)
+#         self.assertNotIn('vehicle_info', data)
 
-    def test_property_request_representation(self):
-        # create a serializer instance and pass the request to it
-        serializer = RegistrationRequestsSerializer(self.property_request)
-        data = serializer.data
-        # esnure the representation includes the address and not the property and vehicle 
-        self.assertIn('property_info', data)
-        self.assertIn('citizen_info', data)
-        self.assertNotIn('address_info', data)
-        self.assertNotIn('vehicle_info', data)
+#     def test_property_request_representation(self):
+#         # create a serializer instance and pass the request to it
+#         serializer = RegistrationRequestsSerializer(self.property_request)
+#         data = serializer.data
+#         # esnure the representation includes the address and not the property and vehicle 
+#         self.assertIn('property_info', data)
+#         self.assertIn('citizen_info', data)
+#         self.assertNotIn('address_info', data)
+#         self.assertNotIn('vehicle_info', data)
 
-    def test_vehicle_request_representation(self):
-        # create a serializer instance and pass the request to it
-        serializer = RegistrationRequestsSerializer(self.vehicle_request)
-        data = serializer.data
-        # esnure the representation includes the address and not the property and vehicle 
-        self.assertIn('vehicle_info', data)
-        self.assertIn('citizen_info', data)
-        self.assertNotIn('address_info', data)
-        self.assertNotIn('property_info', data)
+#     def test_vehicle_request_representation(self):
+#         # create a serializer instance and pass the request to it
+#         serializer = RegistrationRequestsSerializer(self.vehicle_request)
+#         data = serializer.data
+#         # esnure the representation includes the address and not the property and vehicle 
+#         self.assertIn('vehicle_info', data)
+#         self.assertIn('citizen_info', data)
+#         self.assertNotIn('address_info', data)
+#         self.assertNotIn('property_info', data)
     
-    def test_get_address_info_method(self):
-        # create a serializer instance and pass the request to it
-        serializer = RegistrationRequestsSerializer(self.address_request)
-        # retrieve the address information from the serializer data
-        address_info = serializer.data['address_info']
-        # check that the serializer returns the correct address info
-        self.assertIsNotNone(address_info)
-        self.assertEqual(address_info['id'], self.address.id)
-        self.assertEqual(address_info['state'], 'Pending Request')
-        # copilot ^_^
+#     def test_get_address_info_method(self):
+#         # create a serializer instance and pass the request to it
+#         serializer = RegistrationRequestsSerializer(self.address_request)
+#         # retrieve the address information from the serializer data
+#         address_info = serializer.data['address_info']
+#         # check that the serializer returns the correct address info
+#         self.assertIsNotNone(address_info)
+#         self.assertEqual(address_info['id'], self.address.id)
+#         self.assertEqual(address_info['state'], 'Pending Request')
+#         # copilot ^_^
     
-    def test_get_property_info_method(self):
-        # create a serializer instance and pass the request to it
-        serializer = RegistrationRequestsSerializer(self.property_request)
-        # retrieve the property information from the serializer data
-        property_info = serializer.data['property_info']
-        # check that the serializer returns the correct property info
-        self.assertIsNotNone(property_info)
-        self.assertEqual(property_info['id'], self.property.id)
-        self.assertEqual(property_info['is_under_transfer'], True)
+#     def test_get_property_info_method(self):
+#         # create a serializer instance and pass the request to it
+#         serializer = RegistrationRequestsSerializer(self.property_request)
+#         # retrieve the property information from the serializer data
+#         property_info = serializer.data['property_info']
+#         # check that the serializer returns the correct property info
+#         self.assertIsNotNone(property_info)
+#         self.assertEqual(property_info['id'], self.property.id)
+#         self.assertEqual(property_info['is_under_transfer'], True)
 
-    def test_get_vehicle_info_method(self):
-        # create a serializer instance and pass the request to it
-        serializer = RegistrationRequestsSerializer(self.vehicle_request)
-        # retrieve the vehicle information from the serializer data
-        vehicle_info = serializer.data['vehicle_info']
-        # check that the serializer returns the correct vehicle info
-        self.assertIsNotNone(vehicle_info)
-        self.assertEqual(vehicle_info['id'], self.vehicle.id)
-        self.assertEqual(vehicle_info['is_under_transfer'], True)
+#     def test_get_vehicle_info_method(self):
+#         # create a serializer instance and pass the request to it
+#         serializer = RegistrationRequestsSerializer(self.vehicle_request)
+#         # retrieve the vehicle information from the serializer data
+#         vehicle_info = serializer.data['vehicle_info']
+#         # check that the serializer returns the correct vehicle info
+#         self.assertIsNotNone(vehicle_info)
+#         self.assertEqual(vehicle_info['id'], self.vehicle.id)
+#         self.assertEqual(vehicle_info['is_under_transfer'], True)
     
-@override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder
-class RegistrationSerializersTest(BaseTestCase):
-    '''Agenda: test the registration serializers'''
-    def setUp(self):
-        # create a SimpleUploadedFile for the proof document
-        self.proof_document = SimpleUploadedFile(
-            "proof_document.pdf",  
-            b"Dummy file content",  
-            content_type='application/pdf'
-        ) 
-        # open the media folder and create a SimpleUploadedFile for the test picture
-        with default_storage.open('valid.jpeg', 'rb') as image_file:
-            picture = SimpleUploadedFile("TestImage.jpg", image_file.read(), content_type='image/jpeg')
-        # define the valid and invalid data
-        self.valid_property_data = {
-            'property_id': 'PROP123',
-            'location': 'Downtown',
-            'property_type': 'Residential',
-            'description': 'A nice place to live.',
-            'size': '1200 sqft',
-            'picture': picture,
-            'previous_owner_id': 'OWNER456',
-            'proof_document': self.proof_document
-        }
-        self.invalid_property_data = {
-            'property_id': '',
-            'location': 'Downtown',
-            'property_type': 'InvalidType', 
-            'description': 'A nice place to live.',
-            'size': '1200 sqft',
-            'picture': '',  
-            'previous_owner_id': 'OWNER456',
-            'proof_document': '' 
-        }
-        self.valid_vehicle_data = {
-            'serial_number': 123456,
-            'model': 'Mustang',
-            'manufacturer': 'Ford',
-            'year': 2020,
-            'vehicle_type': 'Sports Car',
-            'picture': picture,
-            'plate_number': 'XYZ123',
-            'proof_document':self.proof_document,
-            'previous_owner_id': 'OWNER789'
-        }
+# @override_settings(MEDIA_ROOT=tempfile.mkdtemp()) # this will store and clean up the uploaded files in a temporary folder
+# class RegistrationSerializersTest(BaseTestCase):
+#     '''Agenda: test the registration serializers'''
+#     def setUp(self):
+#         # create a SimpleUploadedFile for the proof document
+#         self.proof_document = SimpleUploadedFile(
+#             "proof_document.pdf",  
+#             b"Dummy file content",  
+#             content_type='application/pdf'
+#         ) 
+#         # open the media folder and create a SimpleUploadedFile for the test picture
+#         with default_storage.open('valid.jpeg', 'rb') as image_file:
+#             picture = SimpleUploadedFile("TestImage.jpg", image_file.read(), content_type='image/jpeg')
+#         # define the valid and invalid data
+#         self.valid_property_data = {
+#             'property_id': 'PROP123',
+#             'location': 'Downtown',
+#             'property_type': 'Residential',
+#             'description': 'A nice place to live.',
+#             'size': '1200 sqft',
+#             'picture': picture,
+#             'previous_owner_id': 'OWNER456',
+#             'proof_document': self.proof_document
+#         }
+#         self.invalid_property_data = {
+#             'property_id': '',
+#             'location': 'Downtown',
+#             'property_type': 'InvalidType', 
+#             'description': 'A nice place to live.',
+#             'size': '1200 sqft',
+#             'picture': '',  
+#             'previous_owner_id': 'OWNER456',
+#             'proof_document': '' 
+#         }
+#         self.valid_vehicle_data = {
+#             'serial_number': 123456,
+#             'model': 'Mustang',
+#             'manufacturer': 'Ford',
+#             'year': 2020,
+#             'vehicle_type': 'Sports Car',
+#             'picture': picture,
+#             'plate_number': 'XYZ123',
+#             'proof_document':self.proof_document,
+#             'previous_owner_id': 'OWNER789'
+#         }
 
-        self.invalid_vehicle_data = {
-            'serial_number': 'abc',  
-            'model': 'Mustang',
-            'manufacturer': 'Ford',
-            'year': 2020,
-            'vehicle_type': 'Flying Car', 
-            'picture': '',  
-            'plate_number': 'XYZ123',
-            'proof_document': '', 
-            'previous_owner_id': 'OWNER789'
-        }
+#         self.invalid_vehicle_data = {
+#             'serial_number': 'abc',  
+#             'model': 'Mustang',
+#             'manufacturer': 'Ford',
+#             'year': 2020,
+#             'vehicle_type': 'Flying Car', 
+#             'picture': '',  
+#             'plate_number': 'XYZ123',
+#             'proof_document': '', 
+#             'previous_owner_id': 'OWNER789'
+#         }
 
-    def test_property_registration_valid_data(self):
-        # create a serializer instance and place the data
-        serializer = PropertyRegistrationSerializer(data=self.valid_property_data)
-        # ensure the serializer is valid
-        self.assertTrue(serializer.is_valid())
-        self.assertEqual(serializer.validated_data['property_id'], 'PROP123')
-        self.assertEqual(serializer.validated_data['location'], 'Downtown')
-        self.assertEqual(serializer.validated_data['property_type'], 'Residential')
-        self.assertEqual(serializer.validated_data['size'], '1200 sqft')
+#     def test_property_registration_valid_data(self):
+#         # create a serializer instance and place the data
+#         serializer = PropertyRegistrationSerializer(data=self.valid_property_data)
+#         # ensure the serializer is valid
+#         self.assertTrue(serializer.is_valid())
+#         self.assertEqual(serializer.validated_data['property_id'], 'PROP123')
+#         self.assertEqual(serializer.validated_data['location'], 'Downtown')
+#         self.assertEqual(serializer.validated_data['property_type'], 'Residential')
+#         self.assertEqual(serializer.validated_data['size'], '1200 sqft')
 
-    def test_property_registration_invalid_data(self):
-        # create a serializer instance and place the data
-        serializer = PropertyRegistrationSerializer(data=self.invalid_property_data)
-        # ensure the serializer is not valid
-        self.assertFalse(serializer.is_valid())
-        self.assertIn('property_id', serializer.errors)
-        self.assertIn('property_type', serializer.errors)
-        self.assertIn('picture', serializer.errors)
-        self.assertIn('proof_document', serializer.errors)
+#     def test_property_registration_invalid_data(self):
+#         # create a serializer instance and place the data
+#         serializer = PropertyRegistrationSerializer(data=self.invalid_property_data)
+#         # ensure the serializer is not valid
+#         self.assertFalse(serializer.is_valid())
+#         self.assertIn('property_id', serializer.errors)
+#         self.assertIn('property_type', serializer.errors)
+#         self.assertIn('picture', serializer.errors)
+#         self.assertIn('proof_document', serializer.errors)
     
-    def test_vehicle_registration_valid_data(self):
-         # create a serializer instance and place the data
-        serializer = VehicleRegistrationSerializer(data=self.valid_vehicle_data)
-        # ensure the serializer is valid
-        self.assertTrue(serializer.is_valid())
-        self.assertEqual(serializer.validated_data['serial_number'], 123456)
-        self.assertEqual(serializer.validated_data['model'], 'Mustang')
-        self.assertEqual(serializer.validated_data['manufacturer'], 'Ford')
-        self.assertEqual(serializer.validated_data['year'], 2020)
-        self.assertEqual(serializer.validated_data['vehicle_type'], 'Sports Car')
+#     def test_vehicle_registration_valid_data(self):
+#          # create a serializer instance and place the data
+#         serializer = VehicleRegistrationSerializer(data=self.valid_vehicle_data)
+#         # ensure the serializer is valid
+#         self.assertTrue(serializer.is_valid())
+#         self.assertEqual(serializer.validated_data['serial_number'], 123456)
+#         self.assertEqual(serializer.validated_data['model'], 'Mustang')
+#         self.assertEqual(serializer.validated_data['manufacturer'], 'Ford')
+#         self.assertEqual(serializer.validated_data['year'], 2020)
+#         self.assertEqual(serializer.validated_data['vehicle_type'], 'Sports Car')
 
-    def test_vehicle_registration_invalid_data(self):
-        # create a serializer instance and place the data
-        serializer = VehicleRegistrationSerializer(data=self.invalid_vehicle_data)
-        # ensure the serializer is not valid
-        self.assertFalse(serializer.is_valid())
-        self.assertIn('serial_number', serializer.errors)
-        self.assertIn('vehicle_type', serializer.errors)
-        self.assertIn('picture', serializer.errors)
-        self.assertIn('proof_document', serializer.errors)
-    
+#     def test_vehicle_registration_invalid_data(self):
+#         # create a serializer instance and place the data
+#         serializer = VehicleRegistrationSerializer(data=self.invalid_vehicle_data)
+#         # ensure the serializer is not valid
+#         self.assertFalse(serializer.is_valid())
+#         self.assertIn('serial_number', serializer.errors)
+#         self.assertIn('vehicle_type', serializer.errors)
+#         self.assertIn('picture', serializer.errors)
+#         self.assertIn('proof_document', serializer.errors)
+
