@@ -161,7 +161,7 @@ class PassportValidationSerializer(serializers.Serializer):
         data['reason'] = data.get('reason', None) if data.get('reason', '') != '' else None
         data['proof_document'] = data.get('proof_document', None) if data.get('proof_document', '') != '' else None
         return data
-    # copilot ^_^
+        # copilot ^_^
 
 class DrivingLicenseValidationSerializer(serializers.Serializer):
     # the following fields will be used for validation

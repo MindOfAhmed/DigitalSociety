@@ -4,6 +4,10 @@ import os
 import boto3
 import numpy as np
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError
+from dotenv import load_dotenv
+
+# load environment variables from .env file
+load_dotenv()
 
 # retrieve the key and endpoint from the os environment
 AWS_ACCESS_KEY = os.environ.get('AWS_ACCESS_KEY')

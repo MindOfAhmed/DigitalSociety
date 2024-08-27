@@ -255,7 +255,8 @@ def passport_info_validation(request):
                             proof_document = data['proof_document']
                         )
                     renewal_request.save()
-                    '''TODO: send user notification about the request status'''
+                    # notify the user
+                    Notifications.objects.create(citizen=passport.citizen, message="Your passport renewal request has been submitted.")
                     return Response({"message": "The proccess is successful and the request is pending."}, status=status.HTTP_200_OK)
                 else:
                     return Response({"message": "You already have a pending request."}, status=status.HTTP_400_BAD_REQUEST)
@@ -317,7 +318,8 @@ def license_info_validation(request):
                             proof_document = data['proof_document']
                         )
                     renewal_request.save()
-                    '''TODO: send user notification about the request status'''
+                    # notify the user
+                    Notifications.objects.create(citizen=driversLicense.citizen, message="Your driver's license renewal request has been submitted.")
                     return Response({"message": "The proccess is successful and the request is pending."}, status=status.HTTP_200_OK)
                 else:
                     return Response({"message": "You already have a pending request."}, status=status.HTTP_400_BAD_REQUEST)
@@ -372,6 +374,8 @@ def register_address(request):
                     return Response({"message": "This is already your registered address."}, status=status.HTTP_400_BAD_REQUEST)
             except Exception as e:
                 return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            # notify the user
+            Notifications.objects.create(citizen=request.user.citizen, message="Your address registration request has been submitted.")
             return Response({"message": "The proccess is successful and the request is pending."}, status=status.HTTP_200_OK)
         else:
             return Response({"message": "You already have a pending request."}, status=status.HTTP_400_BAD_REQUEST)
@@ -416,6 +420,8 @@ def register_property(request):
                     return Response({"message": "This property is already registered."}, status=status.HTTP_400_BAD_REQUEST)
             except Exception as e:
                 return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            # notify the user
+            Notifications.objects.create(citizen=request.user.citizen, message="Your property registration request has been submitted.")
             return Response({"message": "The proccess is successful and the request is pending."}, status=status.HTTP_200_OK)
         else:
             return Response({"message": "You already have a pending request."}, status=status.HTTP_400_BAD_REQUEST)
@@ -461,6 +467,8 @@ def register_vehicle(request):
                     return Response({"message": "This vehicle is already registered."}, status=status.HTTP_400_BAD_REQUEST)
             except Exception as e:
                 return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            # notify the user
+            Notifications.objects.create(citizen=request.user.citizen, message="Your vehicle registration request has been submitted.")
             return Response({"message": "The proccess is successful and the request is pending."}, status=status.HTTP_200_OK)
         else:
             return Response({"message": "You already have a pending request."}, status=status.HTTP_400_BAD_REQUEST)
@@ -834,4 +842,3 @@ def delete_post(request, id):
         return Response({"message": "The post has been deleted successfully."}, status=status.HTTP_200_OK)
     except Posts.DoesNotExist:
         return Response({"message": "The post does not exist."}, status=status.HTTP_400_BAD_REQUEST)
-
