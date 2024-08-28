@@ -233,7 +233,7 @@ exports[`Component Snapshots Home component renders correctly 1`] = `
         Welcome To The Digital Society!
       </h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad saepe cumque deleniti maiores iure quibusdam in quis? Quasi, saepe dolorum natus hic odit perferendis optio dolores dolore laudantium magni?
+        The Digital Society is a platform that provides digital services to the citizens of country X. We aim to provide a seamless experience for citizens to renew, register, and access their documents all in one place.
       </p>
     </div>
     <div
@@ -292,7 +292,7 @@ exports[`Component Snapshots Home component renders correctly 1`] = `
       <p
         class="card-body"
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad saepe cumque deleniti maiores iure quibusdam in quis?
+        Renewing your passport has never been easier! Simply fill out the form and submit your documents.
       </p>
     </div>
     <div
@@ -325,7 +325,7 @@ exports[`Component Snapshots Home component renders correctly 1`] = `
       <p
         class="card-body"
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad saepe cumque deleniti maiores iure quibusdam in quis?
+        Time to renew your Driver's license? We've got you covered. Follow the steps provided & leave the rest to us.
       </p>
     </div>
     <div
@@ -358,7 +358,7 @@ exports[`Component Snapshots Home component renders correctly 1`] = `
       <p
         class="card-body"
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ad saepe cumque deleniti maiores iure quibusdam in quis?
+        Got a new property? Register it with us in a few simple steps. We'll take care of the rest.
       </p>
     </div>
   </div>
@@ -405,7 +405,7 @@ exports[`Component Snapshots Home component renders correctly 1`] = `
       class="col-md-3 mt-5 d-flex align-items-center"
     >
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit ex sint harum nisi corrupti aut nihil quasi. Ipsa deserunt modi aliquam ex sed atque quidem excepturi, natus hic, enim rerum!
+        The town hall is a place where citizens can voice their concerns and discuss important issues with government representatives. Join the local or national open forums and be a part of the conversation.
       </p>
     </div>
     <div
@@ -437,7 +437,7 @@ exports[`Component Snapshots Home component renders correctly 1`] = `
         class="text-center button"
         href="/townhall"
       >
-        Learn More
+        Join Now
       </a>
     </div>
   </div>
@@ -503,9 +503,9 @@ exports[`Component Snapshots Nav component renders correctly with given props 1`
           >
             <a
               class="nav-link complimentary_color"
-              href="/profile"
+              href="/requests"
             >
-              Profile
+              Requests
             </a>
           </li>
           <li
@@ -516,6 +516,30 @@ exports[`Component Snapshots Nav component renders correctly with given props 1`
             >
               Logout
             </button>
+          </li>
+          <li
+            class="nav-item mt-2 mx-1"
+          >
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-bell "
+              data-icon="bell"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M224 0c-17.7 0-32 14.3-32 32l0 19.2C119 66 64 130.6 64 208l0 18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416l384 0c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8l0-18.8c0-77.4-55-142-128-156.8L256 32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3l-64 0-64 0c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"
+                fill="currentColor"
+              />
+            </svg>
+            <span
+              class="badge mx-1"
+            >
+              1
+            </span>
           </li>
         </ul>
       </div>
@@ -752,297 +776,7 @@ exports[`Component Snapshots RegistrationRequest component renders correctly wit
 </DocumentFragment>
 `;
 
-exports[`Component Snapshots RegistrationRequests component renders correctly 1`] = `
-<DocumentFragment>
-  <div
-    class="card my-5 shadow-sm"
-  >
-    <h3
-      class="d-flex col-md-12 justify-content-center align-items-center mb-3"
-    >
-      Property Registration Request
-    </h3>
-    <div
-      class="row d-flex justify-content-center align-items-center"
-    >
-      <div
-        class="col-md-8"
-      >
-        <div
-          class="card my-3 mx-2 shadow"
-        >
-          <div
-            class="row"
-          >
-            <div
-              class="col-md-6 d-flex justify-content-center align-items-center"
-            >
-              <img
-                alt="Property"
-                class="img-fluid document-picture"
-                src="../assets/property.jpg"
-              />
-            </div>
-            <div
-              class="col-md-6 d-flex justify-content-center align-items-center"
-            >
-              <div
-                class="col"
-              >
-                <strong>
-                  Property ID: 
-                </strong>
-                <p>
-                  A1234567
-                </p>
-                <strong>
-                  Type: 
-                </strong>
-                <p>
-                  House
-                </p>
-                <strong>
-                  Size: 
-                </strong>
-                <p>
-                  100
-                </p>
-                <strong>
-                  Location: 
-                </strong>
-                <p>
-                  City
-                </p>
-              </div>
-              <div
-                class="col me-2"
-              >
-                <strong>
-                  National ID:
-                </strong>
-                <p>
-                  123456789
-                </p>
-                <strong>
-                  Name: 
-                </strong>
-                <p>
-                  John
-                </p>
-                <strong>
-                  Surname: 
-                </strong>
-                <p>
-                  Doe
-                </p>
-                <strong>
-                  DOB: 
-                </strong>
-                <p>
-                  1980-01-01
-                </p>
-                <strong>
-                  Sex: 
-                </strong>
-                <p>
-                  M
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="row d-flex justify-content-center align-items-center"
-          >
-            <div>
-              <p
-                class="mx-3"
-              >
-                Description
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="row my-3 d-flex flex-column justify-content-center align-items-center"
-    >
-      <div
-        class="text-center"
-      >
-        <p>
-          <strong>
-            Proof Document Link:
-          </strong>
-           Proof Document Link
-        </p>
-      </div>
-    </div>
-    <div
-      class="row  d-flex justify-content-center align-items-center mb-3"
-    >
-      <div
-        class="col-md-8 d-flex justify-content-between"
-      >
-        <button
-          class="button"
-        >
-          Reject
-        </button>
-        <button
-          class="button"
-        >
-          Accept
-        </button>
-      </div>
-    </div>
-  </div>
-  <div
-    class="card my-5 shadow-sm"
-  >
-    <h3
-      class="d-flex col-md-12 justify-content-center align-items-center mb-3"
-    >
-      Vehicle Registration Request
-    </h3>
-    <div
-      class="row d-flex justify-content-center align-items-center"
-    >
-      <div
-        class="col-md-8"
-      >
-        <div
-          class="card my-3 mx-2 shadow"
-        >
-          <div
-            class="row"
-          >
-            <div
-              class="col-md-6 d-flex justify-content-center align-items-center"
-            >
-              <img
-                alt="Vehicle"
-                class="img-fluid document-picture"
-                src="../assets/vehicle.jpg"
-              />
-            </div>
-            <div
-              class="col-md-6 d-flex justify-content-center align-items-center"
-            >
-              <div
-                class="col"
-              >
-                <strong>
-                  Serial Number: 
-                </strong>
-                <p>
-                  987654321
-                </p>
-                <strong>
-                  Plate Number: 
-                </strong>
-                <p>
-                  34-jwt-45
-                </p>
-                <strong>
-                  Model: 
-                </strong>
-                <p>
-                  Model
-                </p>
-                <strong>
-                  Year: 
-                </strong>
-                <p>
-                  2020
-                </p>
-                <strong>
-                  Manufacturer: 
-                </strong>
-                <p>
-                  Manufacturer
-                </p>
-                <strong>
-                  Vehicle Type: 
-                </strong>
-                <p>
-                  Car
-                </p>
-              </div>
-              <div
-                class="col me-2"
-              >
-                <strong>
-                  National ID:
-                </strong>
-                <p>
-                  987654321
-                </p>
-                <strong>
-                  Name: 
-                </strong>
-                <p>
-                  Jane
-                </p>
-                <strong>
-                  Surname: 
-                </strong>
-                <p>
-                  Doe
-                </p>
-                <strong>
-                  DOB: 
-                </strong>
-                <p>
-                  1990-01-01
-                </p>
-                <strong>
-                  Sex: 
-                </strong>
-                <p>
-                  F
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="row my-3 d-flex flex-column justify-content-center align-items-center"
-    >
-      <div
-        class="text-center"
-      >
-        <p>
-          <strong>
-            Proof Document Link:
-          </strong>
-           Proof Document Link
-        </p>
-      </div>
-    </div>
-    <div
-      class="row  d-flex justify-content-center align-items-center mb-3"
-    >
-      <div
-        class="col-md-8 d-flex justify-content-between"
-      >
-        <button
-          class="button"
-        >
-          Reject
-        </button>
-        <button
-          class="button"
-        >
-          Accept
-        </button>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
+exports[`Component Snapshots RegistrationRequests component renders correctly 1`] = `<DocumentFragment />`;
 
 exports[`Component Snapshots RenewalRequest component renders correctly with given props 1`] = `
 <DocumentFragment>
@@ -1204,13 +938,13 @@ exports[`Component Snapshots RenewalRequest component renders correctly with giv
                   Issued:
                 </strong>
                 <p>
-                  2024-08-14
+                  2024-08-27
                 </p>
                 <strong>
                   Expires:
                 </strong>
                 <p>
-                  2024-08-14
+                  2024-08-27
                 </p>
               </div>
             </div>

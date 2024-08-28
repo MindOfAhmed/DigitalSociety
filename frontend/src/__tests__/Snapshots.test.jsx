@@ -222,11 +222,8 @@ describe("Component Snapshots", () => {
     const props = {
       isLoggedIn: true,
       onLogout: jest.fn(),
-      userData: {
-        citizens: {
-          picture: "../assets/address.jpg",
-        },
-      },
+      notifications: [{ message: "New notification" }],
+      userGroups: ["Inspectors", "Citizens"],
     };
     // render the Nav component with the given props
     const { asFragment } = render(
