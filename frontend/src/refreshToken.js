@@ -71,10 +71,21 @@ const setupAxiosInterceptors = () => {
   // add the Authorization header to the request
   axios.interceptors.request.use(
     (config) => {
+      // get the access token from local storage
       const token = localStorage.getItem("access_token");
+      // check if the access token is available and add it to the request headers
       if (token) {
         config.headers["Authorization"] = "Bearer " + token;
       }
+      // get the CSRF token from the meta tag in index.html
+      const csrfToken = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content");
+      // check if the CSRF token is available and add it to the request headers
+      if (csrfToken) {
+        config.headers["X-CSRFToken"] = csrfToken;
+      }
+
       return config;
     },
     (error) => {

@@ -277,7 +277,8 @@ class RenewalRequestsSerializer(serializers.ModelSerializer):
 
     '''
     Only include the passport info if the request type is passport and the license info if the request type 
-    is license. The citizen information is also adjusted based on request type. This avoids the redundant data in the response
+    is license. The citizen information is also adjusted based on request type. 
+    This avoids the redundant data in the response
     '''
     def to_representation(self, instance):
         representation = super().to_representation(instance)

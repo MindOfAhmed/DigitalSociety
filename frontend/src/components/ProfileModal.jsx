@@ -22,6 +22,15 @@ export const ProfileModal = ({ show, handleClose, citizen, onSubmit }) => {
       alert("Passwords do not match");
       return;
     }
+    // ensure that the new password is at least 8 characters long with at least one number and one special character
+    if (
+      !newPassword.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/)
+    ) {
+      alert(
+        "Password must be at least 8 characters long and contain at least one number and one special character"
+      );
+      return;
+    }
     // send the form data to the parent component
     onSubmit(username, profilePicture, currentPassword, newPassword);
   };

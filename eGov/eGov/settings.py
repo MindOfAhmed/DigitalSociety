@@ -22,7 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-kknowanwh)d@#--lxku6jybp_w0&ag5jcs4a(!*v!4a-f$t$9k"
+# load environment variables from .env file
+from dotenv import load_dotenv
+load_dotenv()
+DJANGO_SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = DJANGO_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -74,7 +78,7 @@ REST_FRAMEWORK = {
 
 ''' This sets the time for the authennication tokens to expire. The user will have to login once every 7 days '''
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30), # dev purposes only
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=3),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
 
