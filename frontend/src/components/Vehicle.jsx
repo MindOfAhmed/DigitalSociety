@@ -5,7 +5,7 @@ export const Vehicle = ({ info, citizen }) => {
         <div className="col-md-6 d-flex justify-content-center align-items-center">
           <img
             src={info.picture}
-            alt="Vehicle"
+            alt="a vehicle"
             className="img-fluid document-picture"
           />
         </div>

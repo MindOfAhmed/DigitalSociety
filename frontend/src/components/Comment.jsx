@@ -48,7 +48,7 @@ export const Comment = ({ comment, loggedUser }) => {
           <div className="d-flex gap-2 align-items-center">
             <img
               src={comment.picture}
-              alt="profile"
+              alt="user's profile"
               className="comment_profile_picture"
             />
             <p className="m-0">{comment.author}</p>
@@ -62,6 +62,7 @@ export const Comment = ({ comment, loggedUser }) => {
               icon={faThumbsUp}
               onClick={handleLikeCount}
               className="me-2"
+              aria-label="Like button icon"
             />
             {likesCount}
           </span>

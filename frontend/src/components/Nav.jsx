@@ -10,7 +10,10 @@ export const Nav = ({ isLoggedIn, onLogout, notifications, userGroups }) => {
   const isInGroup = (group) => userGroups.includes(group);
 
   return (
-    <nav className="navbar navbar-expand-lg primary_color">
+    <nav
+      className="navbar navbar-expand-lg primary_color"
+      aria-label="main app navigation"
+    >
       <div className="container-fluid">
         <Link className="navbar-brand complimentary_color" to="/">
           Digital Society
@@ -72,6 +75,7 @@ export const Nav = ({ isLoggedIn, onLogout, notifications, userGroups }) => {
                   <FontAwesomeIcon
                     icon={faBell}
                     onClick={() => setShowNotifications((s) => !s)}
+                    aria-label="notifications"
                   />
                   {notifications && notifications.length > 0 && (
                     <span className="badge mx-1">{notifications.length}</span>

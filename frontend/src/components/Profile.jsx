@@ -222,7 +222,7 @@ export const Profile = () => {
                 {citizen && citizen.picture && (
                   <img
                     src={citizen.picture}
-                    alt="profile"
+                    alt="user's profile"
                     className="profile_picture m-3"
                   />
                 )}
@@ -231,7 +231,11 @@ export const Profile = () => {
                     className="button mb-3 mx-4"
                     onClick={handleShowModal}
                   >
-                    <FontAwesomeIcon icon={faPenToSquare} /> Edit Profile
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      aria-label="edit profile icon"
+                    />{" "}
+                    Edit Profile
                   </button>
                 </div>
               </div>

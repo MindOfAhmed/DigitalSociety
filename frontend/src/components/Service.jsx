@@ -11,7 +11,7 @@ export const Service = ({ title, picture, stepsContext, serviceLink }) => {
         <div className="col-md-6 d-flex justify-content-center align-items-center">
           <img
             src={picture}
-            alt="passport"
+            alt="a passport"
             width={500}
             height={275}
             className="shadow-lg"

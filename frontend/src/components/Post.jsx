@@ -79,7 +79,7 @@ export const Post = ({ post, commentsCount, loggedUser }) => {
         <div className="d-flex gap-2 align-items-center">
           <img
             src={post.picture}
-            alt="profile"
+            alt="user's profile"
             className="post_profile_picture"
           />
           <p className="m-0">{post.author}</p>
@@ -93,6 +93,7 @@ export const Post = ({ post, commentsCount, loggedUser }) => {
             icon={faThumbsUp}
             onClick={handleLikeCount}
             className="me-2"
+            aria-label="like button icon"
           />
           {likesCount}
         </span>
@@ -101,6 +102,7 @@ export const Post = ({ post, commentsCount, loggedUser }) => {
             icon={faComment}
             onClick={() => setShowCommentForm((s) => !s)}
             className="me-2"
+            aria-label="comment button icon"
           />
           {commentsCount}
         </span>

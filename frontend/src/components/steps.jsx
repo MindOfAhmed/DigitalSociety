@@ -22,7 +22,11 @@ export const Steps = ({ stepsContext }) => {
         <h3>Step: {step}</h3>
         {/* step context */}
         <div className="d-flex flex-column my-3">
-          <FontAwesomeIcon icon={stepsContext[step - 1].icon} size="2x" />
+          <FontAwesomeIcon
+            icon={stepsContext[step - 1].icon}
+            size="2x"
+            aria-label="an icon that matches the step"
+          />
           <p className="mt-2"> {stepsContext[step - 1].step} </p>
         </div>
         {/* steps tracker */}
@@ -30,7 +34,10 @@ export const Steps = ({ stepsContext }) => {
           {/* loop over each item in the context array and display a step tracker for it */}
           {stepsContext.map((_, i) => {
             return (
-              <div className={step >= i + 1 ? "active-step" : "inactive-step"} key={i}>
+              <div
+                className={step >= i + 1 ? "active-step" : "inactive-step"}
+                key={i}
+              >
                 {i + 1}
               </div>
             );
