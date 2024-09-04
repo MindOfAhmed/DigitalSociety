@@ -18,9 +18,10 @@ export const Home = () => {
         <div className="col-md-6">
           <h1>Welcome To The Digital Society!</h1>
           <p>
-            The Digital Society is a platform that provides digital services to the citizens of 
-            country X. We aim to provide a seamless experience for citizens to renew, register, 
-            and access their documents all in one place.
+            The Digital Society is a platform that provides digital services to
+            the citizens of country X. We aim to provide a seamless experience
+            for citizens to renew, register, and access their documents all in
+            one place.
           </p>
         </div>
         <div className="col-md-6 d-flex align-items-center justify-content-center">
@@ -80,8 +81,8 @@ export const Home = () => {
         <div className="col-md-3 mt-5 d-flex align-items-center">
           <p>
             The town hall is a place where citizens can voice their concerns and
-            discuss important issues with government representatives. Join the local
-            or national open forums and be a part of the conversation.
+            discuss important issues with government representatives. Join the
+            local or national open forums and be a part of the conversation.
           </p>
         </div>
         <div className="col-md-5 image-container">

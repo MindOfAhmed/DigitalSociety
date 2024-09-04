@@ -3,8 +3,6 @@ from datetime import datetime, timedelta
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.core.exceptions import PermissionDenied
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import user_passes_test
 from rest_framework.response import Response
 from rest_framework import status, generics
 from django.conf import settings

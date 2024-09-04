@@ -5,9 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 // axios
 import axios from "axios";
-// react router library
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import { ProtectedRoute } from "./components/ProtectedRoute";
 // components
 import { Home } from "./components/Home";
 import { Profile } from "./components/Profile";
@@ -96,131 +94,71 @@ function App() {
             {/* route is used to define the mapping between the URL path and the component that should be rendered 
             when the path matches. Note: exact is used to match the path exactly */}
             <Route path="/" element={<Home />} exact />
-            <Route
-              path="/profile"
-              element={
-                // <ProtectedRoute>
-                <Profile />
-                // </ProtectedRoute>
-              }
-            />
+            <Route path="/profile" element={<Profile />} />
             <Route
               path="/townhall"
-              element={
-                // <ProtectedRoute>
-                <TownHall userGroups={userGroups} />
-                // </ProtectedRoute>
-              }
+              element={<TownHall userGroups={userGroups} />}
             />
             <Route path="/townhall/forum/:forumId" element={<Forum />} />
             <Route
               path="/townhall/forum/:forumId/post/:postId"
               element={<PostPage />}
             />
-            <Route
-              path="/requests"
-              element={
-                // <ProtectedRoute>
-                <Requests />
-                // </ProtectedRoute>
-              }
-            />
+            <Route path="/requests" element={<Requests />} />
             <Route path="/services" element={<Services />} />
             <Route
               path="/services/passport_citizen"
               element={
-                // <ProtectedRoute>
                 <CitizenValidationForm next="/services/passport_address" />
-                // </ProtectedRoute>
               }
             />
             <Route
               path="/services/passport_address"
-              element={
-                // <ProtectedRoute>
-                <AddressValidationForm next="/services/passport" />
-                // </ProtectedRoute>
-              }
+              element={<AddressValidationForm next="/services/passport" />}
             />
             <Route
               path="/services/passport"
-              element={
-                // <ProtectedRoute>
-                <PassportValidationForm />
-                // </ProtectedRoute>
-              }
+              element={<PassportValidationForm />}
             />
             <Route
               path="/services/DriversLicense_citizen"
               element={
-                // <ProtectedRoute>
                 <CitizenValidationForm next="/services/DriversLicense_address" />
-                // </ProtectedRoute>
               }
             />
             <Route
               path="/services/DriversLicense_address"
               element={
-                // <ProtectedRoute>
                 <AddressValidationForm next="/services/DriversLicense" />
-                // </ProtectedRoute>
               }
             />
             <Route
               path="/services/DriversLicense"
-              element={
-                // <ProtectedRoute>
-                <DriversLicenseValidationForm />
-                // </ProtectedRoute>
-              }
+              element={<DriversLicenseValidationForm />}
             />
             <Route
               path="/services/address"
-              element={
-                // <ProtectedRoute>
-                <AddressRegistrationForm />
-                // </ProtectedRoute>
-              }
+              element={<AddressRegistrationForm />}
             />
             <Route
               path="/services/address_citizen"
-              element={
-                // <ProtectedRoute>
-                <CitizenValidationForm next="/services/address" />
-                // </ProtectedRoute>
-              }
+              element={<CitizenValidationForm next="/services/address" />}
             />
             <Route
               path="/services/property_citizen"
-              element={
-                // <ProtectedRoute>
-                <CitizenValidationForm next="/services/property" />
-                // </ProtectedRoute>
-              }
+              element={<CitizenValidationForm next="/services/property" />}
             />
             <Route
               path="/services/property"
-              element={
-                // <ProtectedRoute>
-                <PropertyRegistrationForm />
-                // </ProtectedRoute>
-              }
+              element={<PropertyRegistrationForm />}
             />
             <Route
               path="/services/vehicle_citizen"
-              element={
-                // <ProtectedRoute>
-                <CitizenValidationForm next="/services/vehicle" />
-                // </ProtectedRoute>
-              }
+              element={<CitizenValidationForm next="/services/vehicle" />}
             />
             <Route
               path="/services/vehicle"
-              element={
-                // <ProtectedRoute>
-                <VehicleRegistrationForm />
-                // </ProtectedRoute>
-              }
+              element={<VehicleRegistrationForm />}
             />
             <Route
               path="/login/"

@@ -51,7 +51,7 @@ export const AddressRegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // this is to prevent the default form submission
-    
+
     // validate the form data
     const validationError = validateFormData(formData);
     setError(validationError);
@@ -97,7 +97,10 @@ export const AddressRegistrationForm = () => {
     <form onSubmit={handleSubmit} encType="multipart/form-data">
       <div className="col-md-12 d-flex justify-content-center align-items-center flex-column mt-5">
         <h1>New Address Confirmation</h1>
-        <p>please enter the details for your new address and upload a proof document</p>
+        <p>
+          please enter the details for your new address and upload a proof
+          document
+        </p>
         <div className="form-group col-md-6">
           <label htmlFor="country">Country</label>
           <input

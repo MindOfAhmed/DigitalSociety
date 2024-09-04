@@ -37,8 +37,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'import_export',
-    'corsheaders', # FOR DEV PURPOSES ONLY
+    "import_export",
+    "corsheaders", # FOR DEV PURPOSES 
     "bootstrap4",
     "rest_framework",
     "rest_framework_simplejwt",

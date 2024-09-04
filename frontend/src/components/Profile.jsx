@@ -4,7 +4,6 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
-// import Tabs from "react-bootstrap/Tabs";
 import { Passport } from "./Passport";
 import { DrivingLicense } from "./DrivingLicense";
 import { Address } from "./Address";
@@ -122,90 +121,6 @@ export const Profile = () => {
   }, []);
 
   return (
-    // place each document in a separate tab
-    // <Tabs
-    //   defaultActiveKey="Passport"
-    //   id="profile-tab"
-    //   className="d-flex justify-content-center"
-    // >
-    //   <Tab eventKey="Profile" title="Profile">
-    //     {/* the citizen's profile picture */}
-    //     <div className="row d-flex justify-content-center">
-    //       <div className="col-md-8 mt-5">
-    //         {citizen && citizen.picture && (
-    //           <img
-    //             src={citizen.picture}
-    //             alt="profile"
-    //             className="rounded mx-auto d-block"
-    //             style={{ width: "300px", height: "300px" }}
-    //           />
-    //         )}
-    //         <div className="d-flex justify-content-center">
-    //           <button className="button mt-3">
-    //             <FontAwesomeIcon icon={faPenToSquare} /> Edit Profile
-    //           </button>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </Tab>
-    //   <Tab eventKey="Passport" title="Passport">
-    //     <div className="row d-flex justify-content-center">
-    //       <div className="col-md-8 mt-5">
-    //         {passport && (
-    //           <Passport
-    //             citizen={citizen}
-    //             info={passport}
-    //             picture={passport.picture}
-    //           />
-    //         )}
-    //       </div>
-    //     </div>
-    //   </Tab>
-    //   <Tab eventKey="Driver's License" title="Driver's License">
-    //     <div className="row d-flex justify-content-center mt-5">
-    //       <div className="col-md-8">
-    //         {license && (
-    //           <DrivingLicense
-    //             citizen={citizen}
-    //             info={license}
-    //             picture={license.picture}
-    //           />
-    //         )}
-    //       </div>
-    //     </div>
-    //   </Tab>
-    //   <Tab eventKey="Addresses" title="Address(es)">
-    //     <div className="row d-flex justify-content-center mt-5">
-    //       <div className="col-md-8">
-    //         {addresses &&
-    //           addresses.map((address, index) => (
-    //             <Address key={index} citizen={citizen} info={address} />
-    //           ))}
-    //       </div>
-    //     </div>
-    //   </Tab>
-    //   <Tab eventKey="Properties" title="Properties">
-    //     <div className="row d-flex justify-content-center mt-5">
-    //       <div className="col-md-8">
-    //         {properties &&
-    //           properties.map((property, index) => (
-    //             <Property key={index} citizen={citizen} info={property} />
-    //           ))}
-    //       </div>
-    //     </div>
-    //   </Tab>
-    //   <Tab eventKey="Vehicles" title="Vehicle(s)">
-    //     <div className="row d-flex justify-content-center mt-5">
-    //       <div className="col-md-8">
-    //         {vehicles &&
-    //           vehicles.map((vehicle, index) => (
-    //             <Vehicle key={index} citizen={citizen} info={vehicle} />
-    //           ))}
-    //       </div>
-    //     </div>
-    //   </Tab>
-    // </Tabs>
-
     <>
       {/*  place each document in a separate tab */}
       <Tab.Container
