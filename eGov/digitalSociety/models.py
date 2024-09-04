@@ -6,7 +6,7 @@ def profile_picture_path(instance, filename):
 
 class Citizens(models.Model):
     # map the citizen to the User model provided by Django
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='citizen', null=True) # null=True
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='citizen') # add null=True before making migrations to get around error
     national_id = models.CharField(max_length=30, primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
