@@ -6,7 +6,7 @@ export const Property = ({ info, citizen }) => {
           <img
             src={info.picture}
             alt="a property"
-            className="img-fluid document-picture"
+            className="img-fluid document_picture"
           />
         </div>
         <div className="col-md-6 d-flex justify-content-center align-items-center">

@@ -30,7 +30,7 @@ export const Home = () => {
             alt="a group of people communicating"
             width={300}
             height={200}
-            className="shadow-lg"
+            className="banner_image shadow-lg"
           />
         </div>
       </div>
@@ -66,11 +66,11 @@ export const Home = () => {
       </div>
       {/* Town Hall */}
       <div className="row d-flex mt-5">
-        <div className="col-md-4 d-flex justify-content-end image-container">
+        <div className="col-md-4 d-flex justify-content-end image_container">
           <img
             src={townhallGov}
             alt="government representatives listening in townhall"
-            className="first-image"
+            className="first_image"
           />
         </div>
         <div className="col-md-1">
@@ -85,16 +85,16 @@ export const Home = () => {
             local or national open forums and be a part of the conversation.
           </p>
         </div>
-        <div className="col-md-5 image-container">
-          <img src={townhall} alt="A townhall" className="second-image" />
+        <div className="col-md-5 image_container">
+          <img src={townhall} alt="A townhall" className="second_image" />
         </div>
       </div>
       <div className="row d-flex">
-        <div className="col-md-4 image-container">
+        <div className="col-md-4 image_container">
           <img
             src={townhallCitizens}
             alt="citizens speaking in townhall"
-            className="third-image"
+            className="third_image"
           />
         </div>
         <div className="col-md-3 d-flex justify-content-center align-items-center">

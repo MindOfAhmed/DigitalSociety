@@ -14,7 +14,7 @@ export const Service = ({ title, picture, stepsContext, serviceLink }) => {
             alt="a passport"
             width={500}
             height={275}
-            className="shadow-lg"
+            className="service_image shadow-lg"
           />
         </div>
         <div className="col-md-6 d-flex flex-column align-items-center justify-content-center">

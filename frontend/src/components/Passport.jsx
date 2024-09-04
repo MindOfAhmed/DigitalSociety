@@ -6,7 +6,7 @@ export const Passport = ({ citizen, picture, info }) => {
           <img
             src={picture}
             alt="a passport"
-            className="img-fluid document-picture"
+            className="img-fluid document_picture"
           />
         </div>
         <div className="col-md-6 d-flex justify-content-center align-items-center">

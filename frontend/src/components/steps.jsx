@@ -35,7 +35,7 @@ export const Steps = ({ stepsContext }) => {
           {stepsContext.map((_, i) => {
             return (
               <div
-                className={step >= i + 1 ? "active-step" : "inactive-step"}
+                className={step >= i + 1 ? "active_step" : "inactive_step"}
                 key={i}
               >
                 {i + 1}

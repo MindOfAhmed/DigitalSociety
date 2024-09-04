@@ -1,8 +1,16 @@
+/* 
+For some reason, when i build the app and copy the build files to django the scale is different. 
+I have to set the font size to 18px to get the same scale as in development */
+html {
+  font-size: 18px; /*define the base font that the app scale is based on*/
+}
+
 body {
   font-family: "Roboto", sans-serif;
-  transform: scale(1.25);
-  transform-origin: top left;
-  width: 80%;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 h1,
@@ -12,6 +20,7 @@ h4,
 h5,
 h6 {
   font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
 }
 
 .primary_color {
@@ -34,11 +43,11 @@ h6 {
 }
 
 .button {
-  border-radius: 7px;
+  border-radius: 0.4375rem;
   background-color: #1d5379;
   color: #f5f5f5;
   text-decoration: none;
-  padding: 6px 10px;
+  padding: 0.375rem 0.625rem;
   transition: 0.5s;
 }
 
@@ -48,59 +57,58 @@ h6 {
 }
 
 .town_hall_text {
-  font-size: 70px;
+  font-size: 4.375rem;
   text-align: center;
 }
 
 /* copilot gave me the following 4 */
-.image-container {
+.image_container {
   position: relative;
-  height: 250px;
+  height: 15.625rem;
 }
 
-.first-image,
-.second-image,
-.third-image {
+.first_image,
+.second_image,
+.third_image {
   position: absolute;
   max-width: 100%; /* avoids overlaping */
 }
 
-.first-image {
-  right: -10px;
+.first_image {
+  right: -0.625rem;
   z-index: 1;
 }
 
-.second-image {
-  left: -10px;
+.second_image {
+  right: -0.3125rem;
   z-index: 2;
 }
 
-.third-image {
+.third_image {
   right: -5px;
   z-index: 1;
 }
 
-.active-step {
+.active_step,
+.inactive_step {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 50%;
+}
+
+.active_step {
   color: #f0c893;
   background-color: #1d5379;
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
 }
-.inactive-step {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.inactive_step {
   color: #000;
   background-color: rgb(206, 202, 202);
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
 }
-.document-picture {
+.document_picture {
   max-width: 50%;
   max-height: 80%;
 }
@@ -109,8 +117,8 @@ h6 {
   color: #f5f5f5 !important;
 }
 .profile_picture {
-  width: 150px;
-  height: 150px;
+  width: 9.375rem;
+  height: 9.375rem;
   border-radius: 20%;
   object-fit: cover;
 }
@@ -118,7 +126,7 @@ h6 {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 20%;
   z-index: 1000;
 }
 /* copilot */
@@ -126,14 +134,24 @@ h6 {
   background-color: red;
 }
 .post_profile_picture {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   border-radius: 50%;
   object-fit: cover;
 }
 .comment_profile_picture {
-  width: 35px;
-  height: 35px;
+  width: 2.1875rem;
+  height: 2.1875rem;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.service_image {
+  width: 31.25rem;
+  height: 17.1875rem;
+}
+
+.banner_image {
+  width: 18.75rem;
+  height: 12.5rem;
 }
